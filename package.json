@@ -1,0 +1,17 @@
+{
+  "name": "karl-dukstein-photography",
+  "version": "1.0.0",
+  "description": "Image assets and scripts for Karl Dukstein photography",
+  "main": "tools/optimize-images.js",
+  "scripts": {
+    "optimize-images": "node tools/optimize-images.js",
+    "list-images": "node tools/list-images.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fast-glob": "^3.4.0",
+    "fs-extra": "^11.1.1",
+    "sharp": "^0.33.0"
+  }
+}
