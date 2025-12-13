@@ -7,6 +7,9 @@
     "optimize-images": "node tools/optimize-images.js",
     "list-images": "node tools/list-images.js"
   },
+  "bin": {
+    "karl-photos": "bin/karl-photos"
+  },
   "author": "",
   "license": "MIT",
   "dependencies": {

@@ -47,3 +47,24 @@ What the scripts do
 Notes
 - PSD files are not converted; they were moved to `images/dnc/originals/`.
 - The scripts skip any files in `images/*/originals`.
+
+Command-line wrapper
+---
+You can run the included CLI wrapper which will choose the best available toolchain (Node.js -> ImageMagick -> Python) and run the appropriate script:
+
+```
+# From project root:
+bin/karl-photos [--originals] [--images] [--all] [--dry-run]
+```
+
+Examples:
+- `bin/karl-photos` — optimize both images + originals.
+- `bin/karl-photos --originals` — only optimize images in `images/originals/*`.
+- `bin/karl-photos --images` — only optimize existing images under `images/*` (skips originals).
+
+If you'd like to install the command globally on your system (optional), from the repo root run:
+
+```
+npm install -g .
+```
+

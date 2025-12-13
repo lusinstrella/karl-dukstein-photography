@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Simple CLI wrapper for optimizing images using the best available tool
+# Priority: Node (tools/optimize-images.js) -> ImageMagick (tools/optimize-images.sh) -> Python (tools/optimize-images.py)
+
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT"
+
+DRY_RUN=0
+ONLY_ORIGINALS=0
+ONLY_IMAGES=0
+
+help() {
+  cat <<EOF
+Usage: karl-photos [--originals] [--images] [--all] [--dry-run]
+Runs image optimization using the best available toolchain installed on your machine.
+Options:
+  --originals  Only optimize images in images/originals/*
+  --images     Only optimize images in images/* (skips originals)
+  --all        Optimize both images and originals (default)
+  --dry-run    Print actions but do not execute
+  --help       Show this help
+EOF
+}
+
+while (("$#")); do
+  case "$1" in
+    --originals) ONLY_ORIGINALS=1; shift;;
+    --images) ONLY_IMAGES=1; shift;;
+    --all) ONLY_IMAGES=0; ONLY_ORIGINALS=0; shift;;
+    --dry-run|-n) DRY_RUN=1; shift;;
+    -h|--help) help; exit 0;;
+    *) echo "Unknown option: $1"; help; exit 1;;
+  esac
+done
+
+if [ "$ONLY_IMAGES" -eq 0 ] && [ "$ONLY_ORIGINALS" -eq 0 ]; then
+  # default -> all
+  ONLY_IMAGES=1
+  ONLY_ORIGINALS=1
+fi
+
+run_node() {
+  if command -v node >/dev/null 2>&1; then
+    echo "Node.js detected. Running tools/optimize-images.js"
+    if [ "$DRY_RUN" -eq 1 ]; then echo "DRY RUN: node tools/optimize-images.js"; return 0; fi
+    node tools/optimize-images.js
+    return 0
+  fi
+  return 1
+}
+
+run_imagemagick() {
+  if command -v magick >/dev/null 2>&1 || command -v convert >/dev/null 2>&1; then
+    echo "ImageMagick detected. Running tools/optimize-images.sh"
+    if [ "$DRY_RUN" -eq 1 ]; then echo "DRY RUN: sh tools/optimize-images.sh"; return 0; fi
+    sh tools/optimize-images.sh
+    return 0
+  fi
+  return 1
+}
+
+run_python() {
+  if command -v python3 >/dev/null 2>&1; then
+    echo "Python detected. Running tools/optimize-images.py"
+    if [ "$DRY_RUN" -eq 1 ]; then echo "DRY RUN: python3 tools/optimize-images.py"; return 0; fi
+    python3 tools/optimize-images.py
+    return 0
+  fi
+  return 1
+}
+
+run_optimize_images() {
+  if run_node; then return 0; fi
+  if run_imagemagick; then return 0; fi
+  if run_python; then return 0; fi
+  echo "No suitable optimizer found (Node, ImageMagick, or Python). Install one and re-run." >&2
+  return 1
+}
+
+if [ "$ONLY_IMAGES" -eq 1 ]; then
+  run_optimize_images
+fi
+
+if [ "$ONLY_ORIGINALS" -eq 1 ]; then
+  echo "Optimizing originals (images/originals/*) -> images/<category>"
+  if [ "$DRY_RUN" -eq 1 ]; then echo "DRY RUN: python3 tools/optimize-originals.py"; else python3 tools/optimize-originals.py; fi
+fi
+
+echo "Done."
