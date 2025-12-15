@@ -42,6 +42,17 @@ def test_manifest_and_index():
             items = data.get(cat, [])
             if items:
                 assert any(it.get('hero') for it in items), f"No hero found in {cat}"
+
+        # Ensure per-section pages exist and contain a grid for the section
+        for cat in data.keys():
+            url = f'http://127.0.0.1:{PORT}/{cat}.html'
+            try:
+                r = urllib.request.urlopen(url)
+                assert r.status == 200
+                html_text = r.read().decode()
+                assert f'data-section="{cat}"' in html_text
+            except Exception as e:
+                raise AssertionError(f"Missing or invalid section page for {cat}: {e}")
     finally:
         if hasattr(server, 'httpd'):
             server.httpd.shutdown()

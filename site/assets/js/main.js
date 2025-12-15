@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const data = await resp.json();
 
   // Update hero if available
-  const editMode = new URLSearchParams(window.location.search).get('edit') === '1';
   try{
     const heroSection = data['dnc'] || [];
     if (heroSection.length > 0){
@@ -27,12 +26,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   }catch(e){console.warn('hero update failed', e)}
-*** End Patch
   // Render grids
   document.querySelectorAll('.grid').forEach(grid => {
     const section = grid.dataset.section;
     const imgs = data[section] || [];
-    imgs.slice(0, 20).forEach((it, idx) => {
+    imgs.forEach((it, idx) => {
       const div = document.createElement('div');
       div.className = 'item fade-in';
       const sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
@@ -40,29 +38,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <picture>
           ${it.srcset_webp ? `<source type="image/webp" srcset="/${it.srcset_webp}" sizes="${sizes}">` : ''}
           <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" data-base="${it.id}" data-section="${section}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
-        </picture>
-        ${editMode ? `<button class="set-hero-btn" data-id="${it.id}" data-section="${section}">Set Hero</button>` : ''}`;
+        </picture>`;
       grid.appendChild(div);
     });
 
-    if (editMode) {
-      // attach handlers for set-hero buttons
-      grid.querySelectorAll('.set-hero-btn').forEach(btn => btn.addEventListener('click', (ev) => {
-        const id = btn.dataset.id;
-        const cat = btn.dataset.section;
-        // Create downloadable hero.txt content
-        const blob = new Blob([id], {type: 'text/plain'});
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'hero.txt';
-        a.style.display = 'none';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        alert(`Downloaded hero.txt with id "${id}". To persist as the hero for "${cat}", either: \n\n1) Move the file into images/${cat}/hero.txt and run: python3 tools/generate-manifest.py\n\n2) Run: python3 tools/set-hero.py ${cat} ${id}`);
-      }));
-    }
-*** End Patch
+
   });
 
   // Lazy load & fade-in

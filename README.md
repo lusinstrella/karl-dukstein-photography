@@ -51,8 +51,6 @@ If no explicit hero is found the generator will select the first image as the he
 
 Selecting the hero visually
 
-- Quick visual option: open the site with `?edit=1` (eg: http://localhost:8000/?edit=1). "Set Hero" buttons will appear on images. Clicking a Set Hero button downloads a `hero.txt` containing the selected image id — move that `hero.txt` into the category folder (eg: `images/dnc/hero.txt`) and run `python3 tools/generate-manifest.py` to persist the choice.
-
 - CLI option: run `python3 tools/set-hero.py <category> <base-id>` which writes `images/<category>/hero.txt` for you and instructs you to re-run `python3 tools/generate-manifest.py`.
 
 
@@ -90,6 +88,8 @@ npm install -g .
 
 Preview the static site locally
 ---
+
+Each project/section is a separate page (for example: `/dnc.html`, `/frack-county.html`).
 
 Generate the image manifest and start a simple server to preview the site:
 
