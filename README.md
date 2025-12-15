@@ -49,6 +49,8 @@ What the scripts do
 
 If no explicit hero is found the generator will select the first image as the hero.
 
+Optional: To control the hero image focal point, create a file named `<base>-focus.txt` next to the images in the category folder. The file can contain `left`, `right`, `top`, or `bottom`, or two numbers representing `x y` percentages (for example: `30 40` for `30% 40%`). The manifest generator will pick this up and the hero image will use that `object-position` value.
+
 Selecting the hero visually
 
 - CLI option: run `python3 tools/set-hero.py <category> <base-id>` which writes `images/<category>/hero.txt` for you and instructs you to re-run `python3 tools/generate-manifest.py`.

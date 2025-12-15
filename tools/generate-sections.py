@@ -111,9 +111,15 @@ def pick_hero(items):
     if hero.get('full_webp'):
         out += f'  <source srcset="/{html.escape(hero["full_webp"])}" type="image/webp">\n'
     if hero.get('full_jpg'):
-        out += f'  <img class="hero-img" src="/{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
+        op = ''
+        if hero.get('object_position') and hero['object_position'].get('position'):
+            op = f' style="object-position:{html.escape(hero["object_position"]["position"])}"'
+        out += f'  <img class="hero-img" src="/{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
     elif hero.get('full_webp'):
-        out += f'  <img class="hero-img" src="/{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
+        op = ''
+        if hero.get('object_position') and hero['object_position'].get('position'):
+            op = f' style="object-position:{html.escape(hero["object_position"]["position"])}"'
+        out += f'  <img class="hero-img" src="/{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
     out += '\n</picture>'
     return out
 

@@ -91,6 +91,21 @@ def find_images(cat_dir):
             'alt': b.replace('-', ' '),
             'hero': True if b in hero_bases else False,
         }
+        # optional focal point via <base>-focus.txt containing either "left", "right", "top", "bottom" or "x y" as percentages
+        focus_file = cat_dir / f"{b}-focus.txt"
+        if focus_file.exists():
+            try:
+                txt = focus_file.read_text().strip()
+                if txt in ('left','right','top','bottom'):
+                    item['object_position'] = {'position': txt}
+                else:
+                    parts = txt.split()
+                    if len(parts) == 2:
+                        # expect numbers as percentages
+                        x, y = parts
+                        item['object_position'] = {'position': f"{x}% {y}%"}
+            except Exception:
+                pass
         items.append(item)
 
     # If no explicit hero was found, mark the first image as hero (for having a reasonable default)
