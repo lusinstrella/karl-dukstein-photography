@@ -8,7 +8,7 @@ import json
 import os
 import sys
 
-PORT = 8001
+PORT = 8002
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'site'))
 
 class ServerThread(threading.Thread):
@@ -43,7 +43,13 @@ def test_manifest_and_index():
             if items:
                 assert any(it.get('hero') for it in items), f"No hero found in {cat}"
 
-        # Ensure per-section pages exist and contain a grid for the section
+        # Index contains covers grid placeholder
+        idx = urllib.request.urlopen(f'http://127.0.0.1:{PORT}/')
+        assert idx.status == 200
+        idx_html = idx.read().decode()
+        assert 'class="covers-grid"' in idx_html
+
+        # Ensure per-section pages exist and contain a grid for the section and pagination placeholder
         for cat in data.keys():
             url = f'http://127.0.0.1:{PORT}/{cat}.html'
             try:
@@ -51,6 +57,7 @@ def test_manifest_and_index():
                 assert r.status == 200
                 html_text = r.read().decode()
                 assert f'data-section="{cat}"' in html_text
+                assert 'class="pagination"' in html_text
             except Exception as e:
                 raise AssertionError(f"Missing or invalid section page for {cat}: {e}")
     finally:

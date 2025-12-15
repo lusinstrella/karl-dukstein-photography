@@ -64,6 +64,7 @@ TEMPLATE = """<!doctype html>
       <section class="section">
         <h2>{title}</h2>
         <div class="grid" data-section="{key}"></div>
+        <nav class="pagination" aria-label="Pagination"></nav>
       </section>
     </div>
   </main>

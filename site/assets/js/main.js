@@ -26,23 +26,103 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   }catch(e){console.warn('hero update failed', e)}
-  // Render grids
-  document.querySelectorAll('.grid').forEach(grid => {
-    const section = grid.dataset.section;
-    const imgs = data[section] || [];
-    imgs.forEach((it, idx) => {
+  // IntersectionObserver for fades
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.08});
+
+  // Render index covers if present
+  const coversGrid = document.getElementById('covers-grid');
+  if (coversGrid) {
+    Object.keys(data).forEach(key => {
+      const items = data[key] || [];
+      const label = key.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      if (items.length === 0) return; // leave empty if no images
+      const cover = items.find(it => it.hero) || items[0];
+      const a = document.createElement('a');
+      a.className = 'section-cover';
+      a.href = `/${key}.html`;
+      a.setAttribute('aria-label', label);
+      a.innerHTML = `
+        <picture>
+          ${cover.srcset_webp ? `<source type="image/webp" srcset="/${cover.srcset_webp.split(', ')[0]}">` : ''}
+          <img src="/${cover.thumb_jpg || cover.thumb_webp || cover.full_jpg || cover.full_webp}" alt="${cover.alt || label}">
+        </picture>
+        <div class="cover-label">${label}</div>`;
+      coversGrid.appendChild(a);
+    });
+  }
+
+  // Pagination-enabled section render
+  const ITEMS_PER_PAGE = 24;
+  function renderSection(key, page=1){
+    const grid = document.querySelector(`.grid[data-section="${key}"]`);
+    if (!grid) return;
+    const imgs = data[key] || [];
+    const total = imgs.length;
+    const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
+    page = Math.max(1, Math.min(page, totalPages));
+    grid.innerHTML = '';
+    const start = (page-1)*ITEMS_PER_PAGE;
+    const pageItems = imgs.slice(start, start + ITEMS_PER_PAGE);
+
+    pageItems.forEach((it, idx) => {
       const div = document.createElement('div');
       div.className = 'item fade-in';
       const sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
       div.innerHTML = `
         <picture>
           ${it.srcset_webp ? `<source type="image/webp" srcset="/${it.srcset_webp}" sizes="${sizes}">` : ''}
-          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" data-base="${it.id}" data-section="${section}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
+          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${key}-${start+idx}" data-base="${it.id}" data-section="${key}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
         </picture>`;
       grid.appendChild(div);
     });
 
+    // render pagination controls (static in HTML so test can detect existence)
+    let pager = grid.parentElement.querySelector('.pagination');
+    if (!pager){
+      pager = document.createElement('nav');
+      pager.className = 'pagination';
+      pager.setAttribute('aria-label','Pagination');
+      grid.parentElement.appendChild(pager);
+    }
+    pager.innerHTML = '';
+    if (totalPages > 1){
+      const prev = document.createElement('button');
+      prev.className = 'page-prev';
+      prev.textContent = 'Prev';
+      prev.disabled = page === 1;
+      prev.addEventListener('click', ()=> renderSection(key, page-1));
+      pager.appendChild(prev);
 
+      const info = document.createElement('span');
+      info.className = 'page-info';
+      info.textContent = `Page ${page} / ${totalPages}`;
+      pager.appendChild(info);
+
+      const next = document.createElement('button');
+      next.className = 'page-next';
+      next.textContent = 'Next';
+      next.disabled = page === totalPages;
+      next.addEventListener('click', ()=> renderSection(key, page+1));
+      pager.appendChild(next);
+    }
+
+    // attach lightbox handlers for newly added images
+    grid.querySelectorAll('img').forEach(img => img.addEventListener('click', openLightbox));
+
+    // rewire intersection observer for fade in
+    grid.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  }
+
+  // initialize all section grids
+  document.querySelectorAll('.grid').forEach(grid => {
+    const section = grid.dataset.section;
+    renderSection(section, 1);
   });
 
   // Lazy load & fade-in
