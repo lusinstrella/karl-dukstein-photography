@@ -7,9 +7,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 IMAGES_ROOT = os.path.join(ROOT, 'images')
 
 SIZES = [
-    ('thumb', 400, 80),
-    ('medium', 800, 85),
-    ('full', 1600, 90),
+    ('thumb', 600, 80),
+    ('full', 1920, 90),
 ]
 
 EXTENSIONS = ('.jpg', '.jpeg', '.png', '.tiff', '.webp', '.heic')

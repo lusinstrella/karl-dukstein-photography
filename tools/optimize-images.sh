@@ -13,7 +13,7 @@ else
   exit 1
 fi
 
-SIZES=("thumb:400:80" "medium:800:85" "full:1600:90")
+SIZES=("thumb:600:80" "full:1920:90")
 
 # Process raster images, excluding originals folder
 find images -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.tiff" -o -iname "*.webp" -o -iname "*.heic" \) ! -path "*/originals/*" | while IFS= read -r f; do

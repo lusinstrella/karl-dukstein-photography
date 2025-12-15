@@ -9,9 +9,8 @@ const IMAGES_ROOT = path.join(ROOT, 'images');
 const IGNORES = ['**/originals/**'];
 
 const SIZES = [
-  { name: 'thumb', width: 400, quality: 80 },
-  { name: 'medium', width: 800, quality: 85 },
-  { name: 'full', width: 1600, quality: 90 },
+  { name: 'thumb', width: 600, quality: 80 },
+  { name: 'full', width: 1920, quality: 90 },
 ];
 
 const EXTENSIONS = ['jpg', 'jpeg', 'png', 'tiff', 'webp', 'heic'];

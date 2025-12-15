@@ -39,10 +39,9 @@ sh tools/optimize-images.sh
 
 What the scripts do
 - Creates 3 variants per image, preserving aspect ratio:
-  - thumb: 400px wide, quality: 80
-  - medium: 800px wide, quality: 85
-  - full: 1600px wide, quality: 90
-- Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|medium|full}.webp` and `.jpg` (JPEG fallback).
+  - thumb: 600px wide, quality: 80
+  - full: 1920px wide, quality: 90
+- Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|full}.webp` and `.jpg` (JPEG fallback). Thumbnails are `-thumb` (600px, quality 80) and fulls are `-full` (1920px, quality 90). Use `<picture>` with `srcset` in your markup for responsive loading.
 
 Notes
 - PSD files are not converted; they were moved to `images/dnc/originals/`.
