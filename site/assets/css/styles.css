@@ -13,6 +13,9 @@ body{margin:0;background:var(--bg);color:var(--accent);font-family:Inter,system-
 .container{max-width:var(--max-width);margin:0 auto;padding:0 20px}
 
 .site-header{position:sticky;top:0;z-index:50;background:transparent;padding:18px 0;backdrop-filter: blur(4px)}
+body.no-scroll{overflow:hidden}
+
+button:focus, a:focus{outline:2px dashed var(--accent);outline-offset:4px}
 .header-inner{display:flex;align-items:center;justify-content:space-between}
 .brand{font-weight:800;letter-spacing:2px}
 .main-nav .nav-list{display:flex;gap:18px;list-style:none;margin:0;padding:0}

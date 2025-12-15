@@ -10,10 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     imgs.slice(0, 20).forEach((it, idx) => {
       const div = document.createElement('div');
       div.className = 'item fade-in';
+      const sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
       div.innerHTML = `
         <picture>
-          <source srcset="/${it.thumb_webp}" type="image/webp">
-          <img data-full="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
+          ${it.srcset_webp ? `<source type="image/webp" srcset="/${it.srcset_webp}" sizes="${sizes}">` : ''}
+          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
         </picture>`;
       grid.appendChild(div);
     });
@@ -41,9 +42,18 @@ function openLightbox(e){
   const img = e.currentTarget;
   const lb = document.getElementById('lightbox');
   const lbImage = lb.querySelector('.lb-image');
-  lbImage.src = img.dataset.full || img.dataset.fullJpg || img.src;
+  // prefer webp full if available
+  lbImage.src = img.dataset.fullWebp || img.dataset.fullWebp || img.dataset.fullJpg || img.dataset.full || img.src;
   lbImage.alt = img.alt || '';
   lb.setAttribute('aria-hidden','false');
+  lb.setAttribute('aria-modal','true');
+  if (!window.previousActiveElement) window.previousActiveElement = document.activeElement;
+  const closeBtn = lb.querySelector('.lb-close');
+  const prevBtn = lb.querySelector('.lb-prev');
+  const nextBtn = lb.querySelector('.lb-next');
+  [closeBtn, prevBtn, nextBtn].forEach(b => b && b.setAttribute('tabindex','0'));
+  if (closeBtn) closeBtn.focus();
+  document.body.classList.add('no-scroll');
   window.currentImage = img;
 
   // update counter if available

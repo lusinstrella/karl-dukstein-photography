@@ -22,7 +22,7 @@ EXTS = ('.webp', '.jpg', '.jpeg', '.png')
 
 def find_images(cat_dir):
     files = list(cat_dir.glob('*'))
-    # find bases that have -thumb or -full
+    # discover bases by thumbs
     thumbs = [f for f in files if f.name.endswith('-thumb.webp') or f.name.endswith('-thumb.jpg')]
     bases = set()
     for t in thumbs:
@@ -31,6 +31,31 @@ def find_images(cat_dir):
 
     items = []
     for b in sorted(bases):
+        # Available size files
+        variants = []
+        size_map = {
+            'thumb': 600,
+            'medium': 1200,
+            'full': 1920,
+        }
+        for name in ['thumb', 'medium', 'full']:
+            webp = cat_dir / f"{b}-{name}.webp"
+            jpg = cat_dir / f"{b}-{name}.jpg"
+            if webp.exists() or jpg.exists():
+                variants.append((name, size_map[name], webp if webp.exists() else None, jpg if jpg.exists() else None))
+
+        # Build srcsets
+        webp_srcs = []
+        jpg_srcs = []
+        for name, width, webp, jpg in variants:
+            if webp:
+                webp_rel = str(webp.relative_to(ROOT)).replace('\\','/')
+                webp_srcs.append(f"{webp_rel} {width}w")
+            if jpg:
+                jpg_rel = str(jpg.relative_to(ROOT)).replace('\\','/')
+                jpg_srcs.append(f"{jpg_rel} {width}w")
+
+        # Fallbacks
         thumb_webp = (cat_dir / f"{b}-thumb.webp")
         thumb_jpg = (cat_dir / f"{b}-thumb.jpg")
         full_webp = (cat_dir / f"{b}-full.webp")
@@ -42,6 +67,9 @@ def find_images(cat_dir):
             'thumb_jpg': str(thumb_jpg.relative_to(ROOT)).replace('\\','/'),
             'full_webp': str(full_webp.relative_to(ROOT)).replace('\\','/'),
             'full_jpg': str(full_jpg.relative_to(ROOT)).replace('\\','/'),
+            'srcset_webp': ", ".join(webp_srcs),
+            'srcset_jpg': ", ".join(jpg_srcs),
+            'sizes': "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw",
             'alt': b.replace('-', ' ')
         }
         items.append(item)

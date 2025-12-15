@@ -40,10 +40,9 @@ sh tools/optimize-images.sh
 What the scripts do
 - Creates 3 variants per image, preserving aspect ratio:
   - thumb: 600px wide, quality: 80
+  - medium: 1200px wide, quality: 85
   - full: 1920px wide, quality: 90
-- Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|full}.webp` and `.jpg` (JPEG fallback). Thumbnails are `-thumb` (600px, quality 80) and fulls are `-full` (1920px, quality 90). Use `<picture>` with `srcset` in your markup for responsive loading.
-
-Notes
+  - Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|medium|full}.webp` and `.jpg` (JPEG fallback). Use the generated `site/data/sections.json` which now includes `srcset` and `sizes` fields for responsive `<picture>` markup.
 - PSD files are not converted; they were moved to `images/dnc/originals/`.
 - The scripts skip any files in `images/*/originals`.
 
@@ -83,5 +82,13 @@ Or use the convenience npm scripts:
 ```
 npm run generate-manifest
 npm run serve-site
+```
+
+Smoke tests
+
+Run a lightweight smoke test (starts a local server on port 8001 and checks the manifest and index):
+
+```
+python3 tools/tests/test_site.py
 ```
 

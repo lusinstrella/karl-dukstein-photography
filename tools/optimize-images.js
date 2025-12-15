@@ -10,6 +10,7 @@ const IGNORES = ['**/originals/**'];
 
 const SIZES = [
   { name: 'thumb', width: 600, quality: 80 },
+  { name: 'medium', width: 1200, quality: 85 },
   { name: 'full', width: 1920, quality: 90 },
 ];
 

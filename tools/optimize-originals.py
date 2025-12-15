@@ -8,6 +8,7 @@ ORIGINALS_ROOT = os.path.join(ROOT, 'images', 'originals')
 
 SIZES = [
     ('thumb', 600, 80),
+    ('medium', 1200, 85),
     ('full', 1920, 90),
 ]
 
