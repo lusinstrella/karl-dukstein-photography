@@ -48,6 +48,23 @@ What the scripts do
 - Or create a `hero.txt` file in the category folder containing the base id (one line, e.g., `foo`).
 
 If no explicit hero is found the generator will select the first image as the hero.
+
+Selecting the hero visually
+
+- Quick visual option: open the site with `?edit=1` (eg: http://localhost:8000/?edit=1). "Set Hero" buttons will appear on images. Clicking a Set Hero button downloads a `hero.txt` containing the selected image id — move that `hero.txt` into the category folder (eg: `images/dnc/hero.txt`) and run `python3 tools/generate-manifest.py` to persist the choice.
+
+- CLI option: run `python3 tools/set-hero.py <category> <base-id>` which writes `images/<category>/hero.txt` for you and instructs you to re-run `python3 tools/generate-manifest.py`.
+
+
+Serving images when previewing the `site/` directory
+
+When using `python3 -m http.server --directory site` to preview the site, the server serves files from the `site/` directory only, so the `images/` folder (which lives at the repo root) isn't visible by default. To make the images available to the site preview, create a symlink from `site/images` to the project `images/` folder:
+
+```bash
+ln -s ../images site/images
+```
+
+This repo already contains that symlink after running the preview setup above. If you prefer not to use a symlink, copy the `images/` folder into `site/` instead.
 - PSD files are not converted; they were moved to `images/dnc/originals/`.
 - The scripts skip any files in `images/*/originals`.
 

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const data = await resp.json();
 
   // Update hero if available
+  const editMode = new URLSearchParams(window.location.search).get('edit') === '1';
   try{
     const heroSection = data['dnc'] || [];
     if (heroSection.length > 0){
@@ -14,9 +15,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         const src = heroPic.querySelector('source');
         const img = heroPic.querySelector('img');
         // pick largest available from srcset (full resolution fallback)
+        if (src && hero.srcset_webp){
+          // use the largest src (last when sorted by width)
+          src.setAttribute('srcset', '/' + hero.srcset_webp.split(', ').pop().split(' ')[0]);
+        }
+        if (img){
+          if (hero.full_jpg) img.setAttribute('src', '/' + hero.full_jpg);
+          else if (hero.full_webp) img.setAttribute('src', '/' + hero.full_webp);
+          img.alt = hero.alt || '';
+        }
+      }
     }
   }catch(e){console.warn('hero update failed', e)}
-
+*** End Patch
   // Render grids
   document.querySelectorAll('.grid').forEach(grid => {
     const section = grid.dataset.section;
@@ -28,10 +39,30 @@ document.addEventListener('DOMContentLoaded', async () => {
       div.innerHTML = `
         <picture>
           ${it.srcset_webp ? `<source type="image/webp" srcset="/${it.srcset_webp}" sizes="${sizes}">` : ''}
-          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
-        </picture>`;
+          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${section}-${idx}" data-base="${it.id}" data-section="${section}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
+        </picture>
+        ${editMode ? `<button class="set-hero-btn" data-id="${it.id}" data-section="${section}">Set Hero</button>` : ''}`;
       grid.appendChild(div);
     });
+
+    if (editMode) {
+      // attach handlers for set-hero buttons
+      grid.querySelectorAll('.set-hero-btn').forEach(btn => btn.addEventListener('click', (ev) => {
+        const id = btn.dataset.id;
+        const cat = btn.dataset.section;
+        // Create downloadable hero.txt content
+        const blob = new Blob([id], {type: 'text/plain'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'hero.txt';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        alert(`Downloaded hero.txt with id "${id}". To persist as the hero for "${cat}", either: \n\n1) Move the file into images/${cat}/hero.txt and run: python3 tools/generate-manifest.py\n\n2) Run: python3 tools/set-hero.py ${cat} ${id}`);
+      }));
+    }
+*** End Patch
   });
 
   // Lazy load & fade-in
