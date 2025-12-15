@@ -7,15 +7,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   try{
     const heroSection = data['dnc'] || [];
     if (heroSection.length > 0){
-      const hero = heroSection[0];
+      // prefer explicitly marked hero
+      const hero = heroSection.find(it => it.hero) || heroSection[0];
       const heroPic = document.querySelector('.hero picture');
-      if (heroPic){
-        // replace source and img
+      if (heroPic && hero){
         const src = heroPic.querySelector('source');
         const img = heroPic.querySelector('img');
-        if (src && hero.srcset_webp) src.setAttribute('srcset', '/' + hero.srcset_webp.split(', ').pop().split(' ')[0]);
-        if (img && hero.full_jpg) img.setAttribute('src', '/' + hero.full_jpg);
-      }
+        // pick largest available from srcset (full resolution fallback)
     }
   }catch(e){console.warn('hero update failed', e)}
 

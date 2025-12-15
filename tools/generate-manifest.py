@@ -22,12 +22,30 @@ EXTS = ('.webp', '.jpg', '.jpeg', '.png')
 
 def find_images(cat_dir):
     files = list(cat_dir.glob('*'))
+
     # discover bases by thumbs
     thumbs = [f for f in files if f.name.endswith('-thumb.webp') or f.name.endswith('-thumb.jpg')]
     bases = set()
     for t in thumbs:
         base = t.name.rsplit('-thumb', 1)[0]
         bases.add(base)
+
+    # detect explicit hero markers: files like <base>-hero.webp or a hero.txt file containing base name
+    hero_bases = set()
+    for f in files:
+        if '-hero.' in f.name:
+            base = f.name.rsplit('-hero', 1)[0]
+            hero_bases.add(base)
+    hero_txt = cat_dir / 'hero.txt'
+    if hero_txt.exists():
+        try:
+            txt = hero_txt.read_text().strip().splitlines()
+            for line in txt:
+                line = line.strip()
+                if line:
+                    hero_bases.add(line)
+        except Exception:
+            pass
 
     items = []
     for b in sorted(bases):
@@ -70,9 +88,14 @@ def find_images(cat_dir):
             'srcset_webp': ", ".join(webp_srcs),
             'srcset_jpg': ", ".join(jpg_srcs),
             'sizes': "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw",
-            'alt': b.replace('-', ' ')
+            'alt': b.replace('-', ' '),
+            'hero': True if b in hero_bases else False,
         }
         items.append(item)
+
+    # If no explicit hero was found, mark the first image as hero (for having a reasonable default)
+    if items and not any(i.get('hero') for i in items):
+        items[0]['hero'] = True
 
     return items
 

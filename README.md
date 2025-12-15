@@ -42,7 +42,12 @@ What the scripts do
   - thumb: 600px wide, quality: 80
   - medium: 1200px wide, quality: 85
   - full: 1920px wide, quality: 90
-  - Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|medium|full}.webp` and `.jpg` (JPEG fallback). Use the generated `site/data/sections.json` which now includes `srcset` and `sizes` fields for responsive `<picture>` markup.
+  - Outputs each variant in WebP + JPEG with the naming format: `image-name-{thumb|medium|full}.webp` and `.jpg` (JPEG fallback). Use the generated `site/data/sections.json` which now includes `srcset` and `sizes` fields for responsive `<picture>` markup. To explicitly set a hero for a category, one of the following is supported:
+
+- Add an image file named `your-image-hero.webp` or `your-image-hero.jpg` in the category folder (e.g., `images/dnc/foo-hero.jpg`) — the manifest generator will mark that base as the hero.
+- Or create a `hero.txt` file in the category folder containing the base id (one line, e.g., `foo`).
+
+If no explicit hero is found the generator will select the first image as the hero.
 - PSD files are not converted; they were moved to `images/dnc/originals/`.
 - The scripts skip any files in `images/*/originals`.
 

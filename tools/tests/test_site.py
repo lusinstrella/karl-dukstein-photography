@@ -37,6 +37,11 @@ def test_manifest_and_index():
         assert 'frack-county' in data
         # At least one image in DNC or frack-county
         assert len(data.get('dnc', [])) + len(data.get('frack-county', [])) > 0
+        # Ensure each category has exactly one hero marker (or at least one)
+        for cat in ['dnc', 'frack-county']:
+            items = data.get(cat, [])
+            if items:
+                assert any(it.get('hero') for it in items), f"No hero found in {cat}"
     finally:
         if hasattr(server, 'httpd'):
             server.httpd.shutdown()
