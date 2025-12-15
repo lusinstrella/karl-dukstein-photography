@@ -5,7 +5,9 @@
   "main": "tools/optimize-images.js",
   "scripts": {
     "optimize-images": "node tools/optimize-images.js",
-    "list-images": "node tools/list-images.js"
+    "list-images": "node tools/list-images.js",
+    "generate-manifest": "python3 tools/generate-manifest.py",
+    "serve-site": "python3 -m http.server 8000 --directory site"
   },
   "bin": {
     "karl-photos": "bin/karl-photos"

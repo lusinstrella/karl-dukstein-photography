@@ -1,0 +1,787 @@
+{
+  "frack-county": [
+    {
+      "id": "_DSF0052",
+      "thumb_webp": "images/frack-county/_DSF0052-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0052-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0052-full.webp",
+      "full_jpg": "images/frack-county/_DSF0052-full.jpg",
+      "alt": "_DSF0052"
+    },
+    {
+      "id": "_DSF0058-2",
+      "thumb_webp": "images/frack-county/_DSF0058-2-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0058-2-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0058-2-full.webp",
+      "full_jpg": "images/frack-county/_DSF0058-2-full.jpg",
+      "alt": "_DSF0058 2"
+    },
+    {
+      "id": "_DSF0068",
+      "thumb_webp": "images/frack-county/_DSF0068-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0068-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0068-full.webp",
+      "full_jpg": "images/frack-county/_DSF0068-full.jpg",
+      "alt": "_DSF0068"
+    },
+    {
+      "id": "_DSF0111",
+      "thumb_webp": "images/frack-county/_DSF0111-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0111-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0111-full.webp",
+      "full_jpg": "images/frack-county/_DSF0111-full.jpg",
+      "alt": "_DSF0111"
+    },
+    {
+      "id": "_DSF0127-2",
+      "thumb_webp": "images/frack-county/_DSF0127-2-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0127-2-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0127-2-full.webp",
+      "full_jpg": "images/frack-county/_DSF0127-2-full.jpg",
+      "alt": "_DSF0127 2"
+    },
+    {
+      "id": "_DSF0139",
+      "thumb_webp": "images/frack-county/_DSF0139-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0139-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0139-full.webp",
+      "full_jpg": "images/frack-county/_DSF0139-full.jpg",
+      "alt": "_DSF0139"
+    },
+    {
+      "id": "_DSF0156",
+      "thumb_webp": "images/frack-county/_DSF0156-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0156-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0156-full.webp",
+      "full_jpg": "images/frack-county/_DSF0156-full.jpg",
+      "alt": "_DSF0156"
+    },
+    {
+      "id": "_DSF0168",
+      "thumb_webp": "images/frack-county/_DSF0168-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0168-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0168-full.webp",
+      "full_jpg": "images/frack-county/_DSF0168-full.jpg",
+      "alt": "_DSF0168"
+    },
+    {
+      "id": "_DSF0193",
+      "thumb_webp": "images/frack-county/_DSF0193-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0193-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0193-full.webp",
+      "full_jpg": "images/frack-county/_DSF0193-full.jpg",
+      "alt": "_DSF0193"
+    },
+    {
+      "id": "_DSF0197",
+      "thumb_webp": "images/frack-county/_DSF0197-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0197-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0197-full.webp",
+      "full_jpg": "images/frack-county/_DSF0197-full.jpg",
+      "alt": "_DSF0197"
+    },
+    {
+      "id": "_DSF0237",
+      "thumb_webp": "images/frack-county/_DSF0237-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0237-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0237-full.webp",
+      "full_jpg": "images/frack-county/_DSF0237-full.jpg",
+      "alt": "_DSF0237"
+    },
+    {
+      "id": "_DSF0246",
+      "thumb_webp": "images/frack-county/_DSF0246-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0246-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0246-full.webp",
+      "full_jpg": "images/frack-county/_DSF0246-full.jpg",
+      "alt": "_DSF0246"
+    },
+    {
+      "id": "_DSF0268",
+      "thumb_webp": "images/frack-county/_DSF0268-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0268-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0268-full.webp",
+      "full_jpg": "images/frack-county/_DSF0268-full.jpg",
+      "alt": "_DSF0268"
+    },
+    {
+      "id": "_DSF0271",
+      "thumb_webp": "images/frack-county/_DSF0271-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0271-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0271-full.webp",
+      "full_jpg": "images/frack-county/_DSF0271-full.jpg",
+      "alt": "_DSF0271"
+    },
+    {
+      "id": "_DSF0317",
+      "thumb_webp": "images/frack-county/_DSF0317-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0317-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0317-full.webp",
+      "full_jpg": "images/frack-county/_DSF0317-full.jpg",
+      "alt": "_DSF0317"
+    },
+    {
+      "id": "_DSF0361",
+      "thumb_webp": "images/frack-county/_DSF0361-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0361-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0361-full.webp",
+      "full_jpg": "images/frack-county/_DSF0361-full.jpg",
+      "alt": "_DSF0361"
+    },
+    {
+      "id": "_DSF0381",
+      "thumb_webp": "images/frack-county/_DSF0381-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0381-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0381-full.webp",
+      "full_jpg": "images/frack-county/_DSF0381-full.jpg",
+      "alt": "_DSF0381"
+    },
+    {
+      "id": "_DSF0421",
+      "thumb_webp": "images/frack-county/_DSF0421-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0421-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0421-full.webp",
+      "full_jpg": "images/frack-county/_DSF0421-full.jpg",
+      "alt": "_DSF0421"
+    },
+    {
+      "id": "_DSF0526",
+      "thumb_webp": "images/frack-county/_DSF0526-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0526-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0526-full.webp",
+      "full_jpg": "images/frack-county/_DSF0526-full.jpg",
+      "alt": "_DSF0526"
+    },
+    {
+      "id": "_DSF0545",
+      "thumb_webp": "images/frack-county/_DSF0545-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0545-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0545-full.webp",
+      "full_jpg": "images/frack-county/_DSF0545-full.jpg",
+      "alt": "_DSF0545"
+    },
+    {
+      "id": "_DSF0613",
+      "thumb_webp": "images/frack-county/_DSF0613-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0613-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0613-full.webp",
+      "full_jpg": "images/frack-county/_DSF0613-full.jpg",
+      "alt": "_DSF0613"
+    },
+    {
+      "id": "_DSF0630",
+      "thumb_webp": "images/frack-county/_DSF0630-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0630-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0630-full.webp",
+      "full_jpg": "images/frack-county/_DSF0630-full.jpg",
+      "alt": "_DSF0630"
+    },
+    {
+      "id": "_DSF0704",
+      "thumb_webp": "images/frack-county/_DSF0704-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0704-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0704-full.webp",
+      "full_jpg": "images/frack-county/_DSF0704-full.jpg",
+      "alt": "_DSF0704"
+    },
+    {
+      "id": "_DSF0724-3",
+      "thumb_webp": "images/frack-county/_DSF0724-3-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0724-3-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0724-3-full.webp",
+      "full_jpg": "images/frack-county/_DSF0724-3-full.jpg",
+      "alt": "_DSF0724 3"
+    },
+    {
+      "id": "_DSF0748",
+      "thumb_webp": "images/frack-county/_DSF0748-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0748-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0748-full.webp",
+      "full_jpg": "images/frack-county/_DSF0748-full.jpg",
+      "alt": "_DSF0748"
+    },
+    {
+      "id": "_DSF0763",
+      "thumb_webp": "images/frack-county/_DSF0763-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0763-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0763-full.webp",
+      "full_jpg": "images/frack-county/_DSF0763-full.jpg",
+      "alt": "_DSF0763"
+    },
+    {
+      "id": "_DSF0772",
+      "thumb_webp": "images/frack-county/_DSF0772-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0772-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0772-full.webp",
+      "full_jpg": "images/frack-county/_DSF0772-full.jpg",
+      "alt": "_DSF0772"
+    },
+    {
+      "id": "_DSF0786",
+      "thumb_webp": "images/frack-county/_DSF0786-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0786-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0786-full.webp",
+      "full_jpg": "images/frack-county/_DSF0786-full.jpg",
+      "alt": "_DSF0786"
+    },
+    {
+      "id": "_DSF0802",
+      "thumb_webp": "images/frack-county/_DSF0802-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0802-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0802-full.webp",
+      "full_jpg": "images/frack-county/_DSF0802-full.jpg",
+      "alt": "_DSF0802"
+    },
+    {
+      "id": "_DSF0806",
+      "thumb_webp": "images/frack-county/_DSF0806-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0806-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0806-full.webp",
+      "full_jpg": "images/frack-county/_DSF0806-full.jpg",
+      "alt": "_DSF0806"
+    },
+    {
+      "id": "_DSF0815",
+      "thumb_webp": "images/frack-county/_DSF0815-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0815-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0815-full.webp",
+      "full_jpg": "images/frack-county/_DSF0815-full.jpg",
+      "alt": "_DSF0815"
+    },
+    {
+      "id": "_DSF0823",
+      "thumb_webp": "images/frack-county/_DSF0823-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0823-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0823-full.webp",
+      "full_jpg": "images/frack-county/_DSF0823-full.jpg",
+      "alt": "_DSF0823"
+    },
+    {
+      "id": "_DSF0847",
+      "thumb_webp": "images/frack-county/_DSF0847-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF0847-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF0847-full.webp",
+      "full_jpg": "images/frack-county/_DSF0847-full.jpg",
+      "alt": "_DSF0847"
+    },
+    {
+      "id": "_DSF1058",
+      "thumb_webp": "images/frack-county/_DSF1058-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1058-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1058-full.webp",
+      "full_jpg": "images/frack-county/_DSF1058-full.jpg",
+      "alt": "_DSF1058"
+    },
+    {
+      "id": "_DSF1105",
+      "thumb_webp": "images/frack-county/_DSF1105-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1105-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1105-full.webp",
+      "full_jpg": "images/frack-county/_DSF1105-full.jpg",
+      "alt": "_DSF1105"
+    },
+    {
+      "id": "_DSF1110",
+      "thumb_webp": "images/frack-county/_DSF1110-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1110-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1110-full.webp",
+      "full_jpg": "images/frack-county/_DSF1110-full.jpg",
+      "alt": "_DSF1110"
+    },
+    {
+      "id": "_DSF1120",
+      "thumb_webp": "images/frack-county/_DSF1120-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1120-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1120-full.webp",
+      "full_jpg": "images/frack-county/_DSF1120-full.jpg",
+      "alt": "_DSF1120"
+    },
+    {
+      "id": "_DSF1136",
+      "thumb_webp": "images/frack-county/_DSF1136-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1136-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1136-full.webp",
+      "full_jpg": "images/frack-county/_DSF1136-full.jpg",
+      "alt": "_DSF1136"
+    },
+    {
+      "id": "_DSF1140",
+      "thumb_webp": "images/frack-county/_DSF1140-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1140-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1140-full.webp",
+      "full_jpg": "images/frack-county/_DSF1140-full.jpg",
+      "alt": "_DSF1140"
+    },
+    {
+      "id": "_DSF1142",
+      "thumb_webp": "images/frack-county/_DSF1142-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1142-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1142-full.webp",
+      "full_jpg": "images/frack-county/_DSF1142-full.jpg",
+      "alt": "_DSF1142"
+    },
+    {
+      "id": "_DSF1146",
+      "thumb_webp": "images/frack-county/_DSF1146-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1146-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1146-full.webp",
+      "full_jpg": "images/frack-county/_DSF1146-full.jpg",
+      "alt": "_DSF1146"
+    },
+    {
+      "id": "_DSF1150",
+      "thumb_webp": "images/frack-county/_DSF1150-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1150-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1150-full.webp",
+      "full_jpg": "images/frack-county/_DSF1150-full.jpg",
+      "alt": "_DSF1150"
+    },
+    {
+      "id": "_DSF1178",
+      "thumb_webp": "images/frack-county/_DSF1178-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1178-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1178-full.webp",
+      "full_jpg": "images/frack-county/_DSF1178-full.jpg",
+      "alt": "_DSF1178"
+    },
+    {
+      "id": "_DSF1196",
+      "thumb_webp": "images/frack-county/_DSF1196-thumb.webp",
+      "thumb_jpg": "images/frack-county/_DSF1196-thumb.jpg",
+      "full_webp": "images/frack-county/_DSF1196-full.webp",
+      "full_jpg": "images/frack-county/_DSF1196-full.jpg",
+      "alt": "_DSF1196"
+    }
+  ],
+  "dnc": [
+    {
+      "id": "_MG_3726",
+      "thumb_webp": "images/dnc/_MG_3726-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3726-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3726-full.webp",
+      "full_jpg": "images/dnc/_MG_3726-full.jpg",
+      "alt": "_MG_3726"
+    },
+    {
+      "id": "_MG_3738",
+      "thumb_webp": "images/dnc/_MG_3738-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3738-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3738-full.webp",
+      "full_jpg": "images/dnc/_MG_3738-full.jpg",
+      "alt": "_MG_3738"
+    },
+    {
+      "id": "_MG_3744",
+      "thumb_webp": "images/dnc/_MG_3744-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3744-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3744-full.webp",
+      "full_jpg": "images/dnc/_MG_3744-full.jpg",
+      "alt": "_MG_3744"
+    },
+    {
+      "id": "_MG_3763",
+      "thumb_webp": "images/dnc/_MG_3763-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3763-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3763-full.webp",
+      "full_jpg": "images/dnc/_MG_3763-full.jpg",
+      "alt": "_MG_3763"
+    },
+    {
+      "id": "_MG_3944",
+      "thumb_webp": "images/dnc/_MG_3944-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3944-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3944-full.webp",
+      "full_jpg": "images/dnc/_MG_3944-full.jpg",
+      "alt": "_MG_3944"
+    },
+    {
+      "id": "_MG_3976",
+      "thumb_webp": "images/dnc/_MG_3976-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3976-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3976-full.webp",
+      "full_jpg": "images/dnc/_MG_3976-full.jpg",
+      "alt": "_MG_3976"
+    },
+    {
+      "id": "_MG_3976-2",
+      "thumb_webp": "images/dnc/_MG_3976-2-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3976-2-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3976-2-full.webp",
+      "full_jpg": "images/dnc/_MG_3976-2-full.jpg",
+      "alt": "_MG_3976 2"
+    },
+    {
+      "id": "_MG_3977",
+      "thumb_webp": "images/dnc/_MG_3977-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3977-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3977-full.webp",
+      "full_jpg": "images/dnc/_MG_3977-full.jpg",
+      "alt": "_MG_3977"
+    },
+    {
+      "id": "_MG_3978",
+      "thumb_webp": "images/dnc/_MG_3978-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3978-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3978-full.webp",
+      "full_jpg": "images/dnc/_MG_3978-full.jpg",
+      "alt": "_MG_3978"
+    },
+    {
+      "id": "_MG_3996",
+      "thumb_webp": "images/dnc/_MG_3996-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3996-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3996-full.webp",
+      "full_jpg": "images/dnc/_MG_3996-full.jpg",
+      "alt": "_MG_3996"
+    },
+    {
+      "id": "_MG_3997",
+      "thumb_webp": "images/dnc/_MG_3997-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3997-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3997-full.webp",
+      "full_jpg": "images/dnc/_MG_3997-full.jpg",
+      "alt": "_MG_3997"
+    },
+    {
+      "id": "_MG_3998",
+      "thumb_webp": "images/dnc/_MG_3998-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3998-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3998-full.webp",
+      "full_jpg": "images/dnc/_MG_3998-full.jpg",
+      "alt": "_MG_3998"
+    },
+    {
+      "id": "_MG_3999",
+      "thumb_webp": "images/dnc/_MG_3999-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_3999-thumb.jpg",
+      "full_webp": "images/dnc/_MG_3999-full.webp",
+      "full_jpg": "images/dnc/_MG_3999-full.jpg",
+      "alt": "_MG_3999"
+    },
+    {
+      "id": "_MG_4000",
+      "thumb_webp": "images/dnc/_MG_4000-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4000-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4000-full.webp",
+      "full_jpg": "images/dnc/_MG_4000-full.jpg",
+      "alt": "_MG_4000"
+    },
+    {
+      "id": "_MG_4001",
+      "thumb_webp": "images/dnc/_MG_4001-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4001-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4001-full.webp",
+      "full_jpg": "images/dnc/_MG_4001-full.jpg",
+      "alt": "_MG_4001"
+    },
+    {
+      "id": "_MG_4014",
+      "thumb_webp": "images/dnc/_MG_4014-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4014-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4014-full.webp",
+      "full_jpg": "images/dnc/_MG_4014-full.jpg",
+      "alt": "_MG_4014"
+    },
+    {
+      "id": "_MG_4142",
+      "thumb_webp": "images/dnc/_MG_4142-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4142-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4142-full.webp",
+      "full_jpg": "images/dnc/_MG_4142-full.jpg",
+      "alt": "_MG_4142"
+    },
+    {
+      "id": "_MG_4146",
+      "thumb_webp": "images/dnc/_MG_4146-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4146-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4146-full.webp",
+      "full_jpg": "images/dnc/_MG_4146-full.jpg",
+      "alt": "_MG_4146"
+    },
+    {
+      "id": "_MG_4231",
+      "thumb_webp": "images/dnc/_MG_4231-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4231-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4231-full.webp",
+      "full_jpg": "images/dnc/_MG_4231-full.jpg",
+      "alt": "_MG_4231"
+    },
+    {
+      "id": "_MG_4234",
+      "thumb_webp": "images/dnc/_MG_4234-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4234-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4234-full.webp",
+      "full_jpg": "images/dnc/_MG_4234-full.jpg",
+      "alt": "_MG_4234"
+    },
+    {
+      "id": "_MG_4240",
+      "thumb_webp": "images/dnc/_MG_4240-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4240-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4240-full.webp",
+      "full_jpg": "images/dnc/_MG_4240-full.jpg",
+      "alt": "_MG_4240"
+    },
+    {
+      "id": "_MG_4244",
+      "thumb_webp": "images/dnc/_MG_4244-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4244-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4244-full.webp",
+      "full_jpg": "images/dnc/_MG_4244-full.jpg",
+      "alt": "_MG_4244"
+    },
+    {
+      "id": "_MG_4503",
+      "thumb_webp": "images/dnc/_MG_4503-thumb.webp",
+      "thumb_jpg": "images/dnc/_MG_4503-thumb.jpg",
+      "full_webp": "images/dnc/_MG_4503-full.webp",
+      "full_jpg": "images/dnc/_MG_4503-full.jpg",
+      "alt": "_MG_4503"
+    },
+    {
+      "id": "untitled-",
+      "thumb_webp": "images/dnc/untitled--thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--thumb.jpg",
+      "full_webp": "images/dnc/untitled--full.webp",
+      "full_jpg": "images/dnc/untitled--full.jpg",
+      "alt": "untitled "
+    },
+    {
+      "id": "untitled--10",
+      "thumb_webp": "images/dnc/untitled--10-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--10-thumb.jpg",
+      "full_webp": "images/dnc/untitled--10-full.webp",
+      "full_jpg": "images/dnc/untitled--10-full.jpg",
+      "alt": "untitled  10"
+    },
+    {
+      "id": "untitled--11",
+      "thumb_webp": "images/dnc/untitled--11-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--11-thumb.jpg",
+      "full_webp": "images/dnc/untitled--11-full.webp",
+      "full_jpg": "images/dnc/untitled--11-full.jpg",
+      "alt": "untitled  11"
+    },
+    {
+      "id": "untitled--12",
+      "thumb_webp": "images/dnc/untitled--12-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--12-thumb.jpg",
+      "full_webp": "images/dnc/untitled--12-full.webp",
+      "full_jpg": "images/dnc/untitled--12-full.jpg",
+      "alt": "untitled  12"
+    },
+    {
+      "id": "untitled--13",
+      "thumb_webp": "images/dnc/untitled--13-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--13-thumb.jpg",
+      "full_webp": "images/dnc/untitled--13-full.webp",
+      "full_jpg": "images/dnc/untitled--13-full.jpg",
+      "alt": "untitled  13"
+    },
+    {
+      "id": "untitled--14",
+      "thumb_webp": "images/dnc/untitled--14-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--14-thumb.jpg",
+      "full_webp": "images/dnc/untitled--14-full.webp",
+      "full_jpg": "images/dnc/untitled--14-full.jpg",
+      "alt": "untitled  14"
+    },
+    {
+      "id": "untitled--15",
+      "thumb_webp": "images/dnc/untitled--15-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--15-thumb.jpg",
+      "full_webp": "images/dnc/untitled--15-full.webp",
+      "full_jpg": "images/dnc/untitled--15-full.jpg",
+      "alt": "untitled  15"
+    },
+    {
+      "id": "untitled--16",
+      "thumb_webp": "images/dnc/untitled--16-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--16-thumb.jpg",
+      "full_webp": "images/dnc/untitled--16-full.webp",
+      "full_jpg": "images/dnc/untitled--16-full.jpg",
+      "alt": "untitled  16"
+    },
+    {
+      "id": "untitled--17",
+      "thumb_webp": "images/dnc/untitled--17-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--17-thumb.jpg",
+      "full_webp": "images/dnc/untitled--17-full.webp",
+      "full_jpg": "images/dnc/untitled--17-full.jpg",
+      "alt": "untitled  17"
+    },
+    {
+      "id": "untitled--18",
+      "thumb_webp": "images/dnc/untitled--18-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--18-thumb.jpg",
+      "full_webp": "images/dnc/untitled--18-full.webp",
+      "full_jpg": "images/dnc/untitled--18-full.jpg",
+      "alt": "untitled  18"
+    },
+    {
+      "id": "untitled--19",
+      "thumb_webp": "images/dnc/untitled--19-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--19-thumb.jpg",
+      "full_webp": "images/dnc/untitled--19-full.webp",
+      "full_jpg": "images/dnc/untitled--19-full.jpg",
+      "alt": "untitled  19"
+    },
+    {
+      "id": "untitled--2",
+      "thumb_webp": "images/dnc/untitled--2-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--2-thumb.jpg",
+      "full_webp": "images/dnc/untitled--2-full.webp",
+      "full_jpg": "images/dnc/untitled--2-full.jpg",
+      "alt": "untitled  2"
+    },
+    {
+      "id": "untitled--20",
+      "thumb_webp": "images/dnc/untitled--20-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--20-thumb.jpg",
+      "full_webp": "images/dnc/untitled--20-full.webp",
+      "full_jpg": "images/dnc/untitled--20-full.jpg",
+      "alt": "untitled  20"
+    },
+    {
+      "id": "untitled--21",
+      "thumb_webp": "images/dnc/untitled--21-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--21-thumb.jpg",
+      "full_webp": "images/dnc/untitled--21-full.webp",
+      "full_jpg": "images/dnc/untitled--21-full.jpg",
+      "alt": "untitled  21"
+    },
+    {
+      "id": "untitled--22",
+      "thumb_webp": "images/dnc/untitled--22-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--22-thumb.jpg",
+      "full_webp": "images/dnc/untitled--22-full.webp",
+      "full_jpg": "images/dnc/untitled--22-full.jpg",
+      "alt": "untitled  22"
+    },
+    {
+      "id": "untitled--23",
+      "thumb_webp": "images/dnc/untitled--23-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--23-thumb.jpg",
+      "full_webp": "images/dnc/untitled--23-full.webp",
+      "full_jpg": "images/dnc/untitled--23-full.jpg",
+      "alt": "untitled  23"
+    },
+    {
+      "id": "untitled--24",
+      "thumb_webp": "images/dnc/untitled--24-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--24-thumb.jpg",
+      "full_webp": "images/dnc/untitled--24-full.webp",
+      "full_jpg": "images/dnc/untitled--24-full.jpg",
+      "alt": "untitled  24"
+    },
+    {
+      "id": "untitled--25",
+      "thumb_webp": "images/dnc/untitled--25-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--25-thumb.jpg",
+      "full_webp": "images/dnc/untitled--25-full.webp",
+      "full_jpg": "images/dnc/untitled--25-full.jpg",
+      "alt": "untitled  25"
+    },
+    {
+      "id": "untitled--26",
+      "thumb_webp": "images/dnc/untitled--26-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--26-thumb.jpg",
+      "full_webp": "images/dnc/untitled--26-full.webp",
+      "full_jpg": "images/dnc/untitled--26-full.jpg",
+      "alt": "untitled  26"
+    },
+    {
+      "id": "untitled--27",
+      "thumb_webp": "images/dnc/untitled--27-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--27-thumb.jpg",
+      "full_webp": "images/dnc/untitled--27-full.webp",
+      "full_jpg": "images/dnc/untitled--27-full.jpg",
+      "alt": "untitled  27"
+    },
+    {
+      "id": "untitled--28",
+      "thumb_webp": "images/dnc/untitled--28-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--28-thumb.jpg",
+      "full_webp": "images/dnc/untitled--28-full.webp",
+      "full_jpg": "images/dnc/untitled--28-full.jpg",
+      "alt": "untitled  28"
+    },
+    {
+      "id": "untitled--3",
+      "thumb_webp": "images/dnc/untitled--3-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--3-thumb.jpg",
+      "full_webp": "images/dnc/untitled--3-full.webp",
+      "full_jpg": "images/dnc/untitled--3-full.jpg",
+      "alt": "untitled  3"
+    },
+    {
+      "id": "untitled--4",
+      "thumb_webp": "images/dnc/untitled--4-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--4-thumb.jpg",
+      "full_webp": "images/dnc/untitled--4-full.webp",
+      "full_jpg": "images/dnc/untitled--4-full.jpg",
+      "alt": "untitled  4"
+    },
+    {
+      "id": "untitled--5",
+      "thumb_webp": "images/dnc/untitled--5-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--5-thumb.jpg",
+      "full_webp": "images/dnc/untitled--5-full.webp",
+      "full_jpg": "images/dnc/untitled--5-full.jpg",
+      "alt": "untitled  5"
+    },
+    {
+      "id": "untitled--6",
+      "thumb_webp": "images/dnc/untitled--6-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--6-thumb.jpg",
+      "full_webp": "images/dnc/untitled--6-full.webp",
+      "full_jpg": "images/dnc/untitled--6-full.jpg",
+      "alt": "untitled  6"
+    },
+    {
+      "id": "untitled--7",
+      "thumb_webp": "images/dnc/untitled--7-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--7-thumb.jpg",
+      "full_webp": "images/dnc/untitled--7-full.webp",
+      "full_jpg": "images/dnc/untitled--7-full.jpg",
+      "alt": "untitled  7"
+    },
+    {
+      "id": "untitled--8",
+      "thumb_webp": "images/dnc/untitled--8-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--8-thumb.jpg",
+      "full_webp": "images/dnc/untitled--8-full.webp",
+      "full_jpg": "images/dnc/untitled--8-full.jpg",
+      "alt": "untitled  8"
+    },
+    {
+      "id": "untitled--9",
+      "thumb_webp": "images/dnc/untitled--9-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled--9-thumb.jpg",
+      "full_webp": "images/dnc/untitled--9-full.webp",
+      "full_jpg": "images/dnc/untitled--9-full.jpg",
+      "alt": "untitled  9"
+    },
+    {
+      "id": "untitled-1",
+      "thumb_webp": "images/dnc/untitled-1-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled-1-thumb.jpg",
+      "full_webp": "images/dnc/untitled-1-full.webp",
+      "full_jpg": "images/dnc/untitled-1-full.jpg",
+      "alt": "untitled 1"
+    },
+    {
+      "id": "untitled-4263",
+      "thumb_webp": "images/dnc/untitled-4263-thumb.webp",
+      "thumb_jpg": "images/dnc/untitled-4263-thumb.jpg",
+      "full_webp": "images/dnc/untitled-4263-full.webp",
+      "full_jpg": "images/dnc/untitled-4263-full.jpg",
+      "alt": "untitled 4263"
+    }
+  ],
+  "weld-county": [],
+  "patriotism": [],
+  "portraits": [],
+  "misc": [],
+  "student-work": []
+}
