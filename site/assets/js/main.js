@@ -45,4 +45,10 @@ function openLightbox(e){
   lbImage.alt = img.alt || '';
   lb.setAttribute('aria-hidden','false');
   window.currentImage = img;
+
+  // update counter if available
+  const imgs = Array.from(document.querySelectorAll('.grid img'));
+  const idx = imgs.indexOf(img);
+  const counter = document.querySelector('#lightbox .lb-counter');
+  if (counter) counter.textContent = `${idx+1}/${imgs.length}`;
 }
