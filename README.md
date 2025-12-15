@@ -67,3 +67,21 @@ If you'd like to install the command globally on your system (optional), from th
 npm install -g .
 ```
 
+Preview the static site locally
+---
+
+Generate the image manifest and start a simple server to preview the site:
+
+```
+python3 tools/generate-manifest.py
+python3 -m http.server 8000 --directory site
+# then open http://localhost:8000 in your browser
+```
+
+Or use the convenience npm scripts:
+
+```
+npm run generate-manifest
+npm run serve-site
+```
+
