@@ -59,9 +59,7 @@ TEMPLATE = """<!doctype html>
   <main>
     <section class="hero" id="hero">
       {hero_html}
-      <div class="hero-overlay">
-        <h1>{title}</h1>
-      </div>
+        <div class="hero-overlay"></div>
     </section>
 
     <div class="container">
@@ -108,15 +106,16 @@ def pick_hero(items):
     hero = next((it for it in items if it.get('hero')), items[0])
     if not hero:
         return ''
-    # prefer webp source if present
-    src = ''
+    # prefer webp source if present, wrap in picture with hero-img class and centerable object-position
+    out = '<picture class="hero-pic">\n'
     if hero.get('full_webp'):
-        src = f'<source srcset="/{html.escape(hero["full_webp"])}" type="image/webp">\n'
+        out += f'  <source srcset="/{html.escape(hero["full_webp"])}" type="image/webp">\n'
     if hero.get('full_jpg'):
-        src += f'<img src="/{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
+        out += f'  <img class="hero-img" src="/{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
     elif hero.get('full_webp'):
-        src += f'<img src="/{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
-    return src
+        out += f'  <img class="hero-img" src="/{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy">'
+    out += '\n</picture>'
+    return out
 
 
 def main():
