@@ -72,9 +72,10 @@ button:focus, a:focus{outline:2px dashed var(--accent);outline-offset:4px}
 @media (max-width:600px){.covers-grid{grid-template-columns:repeat(1,1fr)}.section-cover img{height:160px}}
 
 /* Hero adjustments to match reference proportions */
-.hero{height:min(78vh,760px)}
-.hero-overlay h1{font-size:76px}
-@media (max-width:900px){.hero{height:56vh}.hero-overlay h1{font-size:40px}}
+.hero{height:min(92vh,920px);display:flex;align-items:flex-end}
+.hero-overlay{align-items:flex-start;justify-content:flex-end;padding:0 40px 64px 40px}
+.hero-overlay h1{font-size:clamp(40px,8vw,120px);line-height:1;letter-spacing:3px}
+@media (max-width:900px){.hero{height:70vh}.hero-overlay{padding:0 20px 40px 20px}.hero-overlay h1{font-size:clamp(28px,8vw,56px);text-align:center;align-self:center}}
 
 /* Pagination styles */
 .pagination{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:20px}

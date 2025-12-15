@@ -31,11 +31,13 @@ TEMPLATE = """<!doctype html>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand">KARL DUKSTEIN</div>
+      <div class="brand"><a href="/">KARL DUKSTEIN</a></div>
       <nav class="main-nav">
         <button class="menu-toggle" aria-label="Open menu">☰</button>
         <ul class="nav-list">
+          <li><a href="/">Home</a></li>
           <li><a href="/about.html">About</a></li>
+          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -46,7 +48,9 @@ TEMPLATE = """<!doctype html>
       <div class="brand">KARL DUKSTEIN</div>
       <nav class="main-nav">
         <ul class="nav-list">
+          <li><a href="/">Home</a></li>
 {nav_links}
+          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>

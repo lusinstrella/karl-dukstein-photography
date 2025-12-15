@@ -58,6 +58,8 @@ def test_manifest_and_index():
                 html_text = r.read().decode()
                 assert f'data-section="{cat}"' in html_text
                 assert 'class="pagination"' in html_text
+                # Each section page should include a Home link
+                assert 'href="/"' in html_text, f"No Home link on page {cat}"
             except Exception as e:
                 raise AssertionError(f"Missing or invalid section page for {cat}: {e}")
     finally:
