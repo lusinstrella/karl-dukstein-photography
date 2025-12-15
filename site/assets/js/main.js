@@ -3,6 +3,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   const resp = await fetch('/data/sections.json');
   const data = await resp.json();
 
+  // Update hero if available
+  try{
+    const heroSection = data['dnc'] || [];
+    if (heroSection.length > 0){
+      const hero = heroSection[0];
+      const heroPic = document.querySelector('.hero picture');
+      if (heroPic){
+        // replace source and img
+        const src = heroPic.querySelector('source');
+        const img = heroPic.querySelector('img');
+        if (src && hero.srcset_webp) src.setAttribute('srcset', '/' + hero.srcset_webp.split(', ').pop().split(' ')[0]);
+        if (img && hero.full_jpg) img.setAttribute('src', '/' + hero.full_jpg);
+      }
+    }
+  }catch(e){console.warn('hero update failed', e)}
+
   // Render grids
   document.querySelectorAll('.grid').forEach(grid => {
     const section = grid.dataset.section;
