@@ -131,6 +131,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     // attach lightbox handlers for newly added images
     grid.querySelectorAll('img').forEach(img => img.addEventListener('click', openLightbox));
 
+    // Add onerror fallback to try jpg variants when an image fails to decode (some browsers have flaky webp support)
+    grid.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', function(){
+        console.warn('Image load failed, attempting JPG fallback for', this.src);
+        // prefer explicit data-full-jpg or data-full-jpg attribute, otherwise rewrite .webp -> .jpg
+        const tryList = [];
+        if (this.dataset && this.dataset.fullJpg) tryList.push(this.dataset.fullJpg);
+        const src = this.getAttribute('src') || '';
+        if (src.endsWith('.webp')) tryList.push(src.replace(/\.webp$/, '.jpg'));
+        const srcset = this.getAttribute('srcset') || '';
+        if (srcset.includes('.jpg')) tryList.push(srcset.split(', ')[0].split(' ')[0]);
+        for (const candidate of tryList){
+          if (candidate && candidate !== this.src){
+            this.src = candidate;
+            this.srcset = this.srcset ? this.srcset.replace(/\.webp/g, '.jpg') : this.src;
+            console.info('Switched image src to', candidate);
+            return;
+          }
+        }
+      });
+    });
+
     // rewire intersection observer for fade in
     grid.querySelectorAll('.fade-in').forEach(el => io.observe(el));
   }
