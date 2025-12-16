@@ -58,8 +58,14 @@ def test_manifest_and_index():
                 html_text = r.read().decode()
                 assert f'data-section="{cat}"' in html_text
                 assert 'class="pagination"' in html_text
-                # Each section page should include a Home link
-                assert 'href="/"' in html_text, f"No Home link on page {cat}"
+                # Each section page should include a Home link (accept index.html or /)
+                assert ('href="index.html"' in html_text) or ('href="/"' in html_text), f"No Home link on page {cat}"
+                # Ensure the grid contains at least one rendered item (static rendering),
+                # or a helpful empty-state message when no images exist for that category.
+                if data.get(cat):
+                    assert 'class="item fade-in"' in html_text, f"No items rendered on page {cat}"
+                else:
+                    assert 'No images found for this section.' in html_text, f"No empty-state found on page {cat}"
             except Exception as e:
                 raise AssertionError(f"Missing or invalid section page for {cat}: {e}")
     finally:

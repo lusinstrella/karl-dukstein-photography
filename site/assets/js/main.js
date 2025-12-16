@@ -1,7 +1,14 @@
 // Main site JS: loads manifest, renders grids, lazy loads images, scroll animations
 document.addEventListener('DOMContentLoaded', async () => {
-  const resp = await fetch('data/sections.json');
-  const data = await resp.json();
+  // Load manifest but don't let a network/file error abort the whole script.
+  let data = {};
+  try{
+    const resp = await fetch('data/sections.json');
+    if (!resp.ok) throw new Error(`fetch failed: ${resp.status}`);
+    data = await resp.json();
+  }catch(e){
+    console.warn('Could not load data/sections.json — section grids will be empty', e);
+  }
 
   // Update hero if available
   try{
@@ -67,6 +74,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
     page = Math.max(1, Math.min(page, totalPages));
     grid.innerHTML = '';
+
+    if (total === 0){
+      // helpful visible hint when there are no images to render (or manifest couldn't be loaded)
+      grid.innerHTML = '<p class="empty">No images found for this section. If you opened this file directly, try serving the <code>site/</code> folder over HTTP (for example: <code>python -m http.server</code>) so the manifest can be fetched.</p>';
+      const pager = grid.parentElement.querySelector('.pagination');
+      if (pager) pager.innerHTML = '';
+      return;
+    }
+
     const start = (page-1)*ITEMS_PER_PAGE;
     const pageItems = imgs.slice(start, start + ITEMS_PER_PAGE);
 

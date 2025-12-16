@@ -120,6 +120,43 @@ def pick_hero(items):
     return out
 
 
+def render_grid(items, key):
+    """Return HTML for a fully-rendered grid of items for inclusion in the section page.
+
+    This produces the same structure `main.js` expects (div.item.fade-in with a <picture> and <img>),
+    so the lightbox and other client-side behaviors still work. Generating the grid at build-time
+    ensures pages show images even when opened via file:// or when the manifest can't be fetched.
+    """
+    if not items:
+        return '<div class="grid" data-section="{k}"><p class="empty">No images found for this section.</p></div>'.format(k=html.escape(key))
+
+    out = [f'<div class="grid" data-section="{html.escape(key)}">']
+    for idx, it in enumerate(items):
+        sizes = html.escape(it.get('sizes', '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw'))
+        # build picture element
+        pic = ['    <div class="item fade-in">', '      <picture>']
+        if it.get('srcset_webp'):
+            pic.append(f'        <source type="image/webp" srcset="{html.escape(it["srcset_webp"])}" sizes="{sizes}">')
+        img_attrs = {
+            'data-full-webp': it.get('full_webp',''),
+            'data-full-jpg': it.get('full_jpg',''),
+            'data-id': f"{key}-{idx}",
+            'data-base': it.get('id',''),
+            'data-section': key,
+            'srcset': it.get('srcset_jpg',''),
+            'sizes': sizes,
+            'src': it.get('thumb_jpg', it.get('thumb_webp', it.get('full_jpg', it.get('full_webp','')))),
+            'alt': it.get('alt',''),
+        }
+        attrs = ' '.join([f'{k}="{html.escape(v)}"' for k, v in img_attrs.items() if v is not None])
+        pic.append(f'        <img loading="lazy" {attrs}>')
+        pic.append('      </picture>')
+        pic.append('    </div>')
+        out.extend(pic)
+    out.append('</div>')
+    return '\n'.join(out)
+
+
 def main():
     with open(DATA, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -130,7 +167,10 @@ def main():
         # use label from NAV_LINKS mapping if present, otherwise friendly title
         label = dict(NAV_LINKS).get(key, key.replace('-', ' ').title())
         hero_html = pick_hero(data.get(key, []))
+        grid_html = render_grid(data.get(key, []), key)
         out = TEMPLATE.format(title=html.escape(label), hero_html=hero_html or '', key=html.escape(key), nav_links=nav_links)
+        # Replace the empty grid placeholder with the pre-rendered HTML
+        out = out.replace(f'<div class="grid" data-section="{html.escape(key)}"></div>', grid_html)
         # Ensure nav_links are inserted into the aside nav (formatting could leave an empty list if spacing differs)
         if 'class="nav-list">\n        </ul>' in out and nav_links:
             out = out.replace('class="nav-list">\n        </ul>', f'class="nav-list">\n{nav_links}\n        </ul>')
@@ -144,6 +184,8 @@ def main():
         out = out.replace('href="/student-work.html"', 'href="student-work.html"')
         out = out.replace('href="/contact.html"', 'href="contact.html"')
         out = out.replace('href="/about.html"', 'href="about.html"')
+        # Make brand links relative as well
+        out = out.replace('href="/"', 'href="index.html"')
         path = ROOT / f"{key}.html"
         with open(path, 'w', encoding='utf-8') as fh:
             fh.write(out)
