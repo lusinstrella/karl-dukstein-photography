@@ -16,16 +16,32 @@ concurrency:
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Prepare deployment (exclude originals)
+        run: |
+          mkdir -p _deploy
+          cp -r site/* _deploy/
+          rm -f _deploy/images
+          mkdir -p _deploy/images
+          # Copy only the processed images, not originals
+          for dir in images/*/; do
+            dirname=$(basename "$dir")
+            if [ "$dirname" != "originals" ]; then
+              cp -r "$dir" _deploy/images/
+            fi
+          done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './site'
+          path: './_deploy'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
