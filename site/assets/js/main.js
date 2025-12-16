@@ -141,14 +141,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Mobile menu
   document.querySelector('.menu-toggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+
+  // Delegated click handler so dynamically inserted images open the lightbox reliably
+  document.addEventListener('click', (ev) => {
+    const img = ev.target.closest && ev.target.closest('.grid img');
+    if (img) openLightbox({ currentTarget: img });
+  });
 });
 
 function openLightbox(e){
   const img = e.currentTarget;
   const lb = document.getElementById('lightbox');
   const lbImage = lb.querySelector('.lb-image');
-  // prefer webp full if available
-  lbImage.src = img.dataset.fullWebp || img.dataset.fullWebp || img.dataset.fullJpg || img.dataset.full || img.src;
+  // choose best available full image (prefer webp full, then jpg full, then fallbacks)
+  const src = img.dataset.fullWebp || img.dataset.fullWebp /* intentional duplicate safe-check */ || img.dataset.fullJpg || img.dataset.full || img.src;
+  lbImage.src = src;
   lbImage.alt = img.alt || '';
   lb.setAttribute('aria-hidden','false');
   lb.setAttribute('aria-modal','true');
