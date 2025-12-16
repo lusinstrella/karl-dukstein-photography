@@ -20,8 +20,14 @@ body{
   font-family:'Lora',Georgia,serif;
   line-height:1.6;
   font-size:16px;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
 }
 body.no-scroll{overflow:hidden}
+
+main{flex:1 0 auto}
+footer.site-footer{flex-shrink:0}
 
 /* Typography */
 h1,h2,h3,h4,h5,h6{
@@ -93,7 +99,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   transition:color 0.3s ease,font-weight 0.1s ease;
 }
 .main-nav a:hover{color:var(--accent);text-decoration:underline}
-.main-nav a.active{font-weight:700;color:var(--accent)}
+.main-nav a.active{font-weight:700;color:var(--yellow);text-decoration:none}
 
 /* Dropdown Menu - Fixed hover issue with padding trick */
 .portfolio-dropdown{position:relative}
@@ -322,7 +328,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 }
 .fade-in.visible{opacity:1;transform:none}
 
-/* Homepage Covers Grid */
+/* Homepage Covers Grid - Match carousel width */
 .covers{padding:60px 0}
 .covers h2{
   font-size:24px;
@@ -335,7 +341,15 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:var(--gap);
-  margin-top:30px;
+  margin:30px 60px 0 60px;
+  max-width:calc(100vw - 120px);
+}
+
+@media (max-width:900px){
+  .covers-grid{
+    margin:30px 20px 0 20px;
+    max-width:calc(100vw - 40px);
+  }
 }
 
 .section-cover{
@@ -376,7 +390,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   color:var(--yellow);
 }
 
-@media (max-width:900px){.covers-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:768px){.covers-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:600px){.covers-grid{grid-template-columns:1fr}}
 
 /* Section Pages */
@@ -391,12 +405,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 /* Match carousel width for section grids */
 .section .grid{
   max-width:calc(100vw - 120px);
-  margin:0 auto;
+  margin:0 60px;
 }
 
 @media (max-width:900px){
   .section .grid{
     max-width:calc(100vw - 40px);
+    margin:0 20px;
   }
 }
 
