@@ -294,6 +294,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   overflow:hidden;
   background:var(--panel);
   aspect-ratio:4/3;
+  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  transition:box-shadow 0.3s ease,transform 0.3s ease;
+}
+
+.grid .item:hover{
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+  transform:translateY(-4px);
 }
 
 /* New Hover Animation (emileemcgovern style) */
@@ -302,17 +309,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   height:100%;
   object-fit:cover;
   opacity:0;
-  transform:translate3d(0,10px,0);
-  transition:opacity 1s cubic-bezier(.33,0,.2,1),transform 1s cubic-bezier(.33,0,.2,1);
+  transform:translate3d(0,10px,0) scale(1);
+  transition:opacity 1s cubic-bezier(.33,0,.2,1),transform 0.6s cubic-bezier(.33,0,.2,1);
 }
 
 .grid .item img.loaded{
   opacity:1;
-  transform:translate3d(0,0,0);
+  transform:translate3d(0,0,0) scale(1);
 }
 
 .grid .item:hover img{
-  transform:translate3d(0,-5px,0);
+  transform:translate3d(0,0,0) scale(1.05);
 }
 
 @media (max-width:1200px){.grid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}}
