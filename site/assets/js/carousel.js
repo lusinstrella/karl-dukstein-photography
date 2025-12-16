@@ -51,50 +51,8 @@ class Carousel {
       inner.appendChild(item);
     });
 
-    // Add pause indicator
-    const pauseIndicator = document.createElement('div');
-    pauseIndicator.className = 'carousel-pause-indicator';
-    this.element.appendChild(pauseIndicator);
-
-    // Add indicators
-    this.renderIndicators();
-
     // Update counter
     this.updateCounter();
-  }
-
-  renderIndicators() {
-    // Remove existing indicators
-    const existingIndicators = this.element.querySelector('.carousel-indicators');
-    if (existingIndicators) existingIndicators.remove();
-
-    // Create new indicators container
-    const indicators = document.createElement('div');
-    indicators.className = 'carousel-indicators';
-
-    this.images.forEach((img, index) => {
-      const indicator = document.createElement('div');
-      indicator.className = 'carousel-indicator';
-      if (index === 0) indicator.classList.add('active');
-      indicator.addEventListener('click', () => {
-        this.currentIndex = index;
-        this.transition();
-      });
-      indicators.appendChild(indicator);
-    });
-
-    this.element.appendChild(indicators);
-  }
-
-  updateIndicators() {
-    const indicators = this.element.querySelectorAll('.carousel-indicator');
-    indicators.forEach((indicator, index) => {
-      if (index === this.currentIndex) {
-        indicator.classList.add('active');
-      } else {
-        indicator.classList.remove('active');
-      }
-    });
   }
 
   attachEventListeners() {
@@ -105,14 +63,8 @@ class Carousel {
     if (nextBtn) nextBtn.addEventListener('click', () => this.next());
 
     // Pause on hover
-    this.element.addEventListener('mouseenter', () => {
-      this.stopAutoAdvance();
-      this.element.classList.add('paused');
-    });
-    this.element.addEventListener('mouseleave', () => {
-      this.startAutoAdvance();
-      this.element.classList.remove('paused');
-    });
+    this.element.addEventListener('mouseenter', () => this.stopAutoAdvance());
+    this.element.addEventListener('mouseleave', () => this.startAutoAdvance());
   }
 
   next() {
@@ -151,7 +103,6 @@ class Carousel {
     }
 
     this.updateCounter();
-    this.updateIndicators();
     this.resetAutoAdvance();
   }
 

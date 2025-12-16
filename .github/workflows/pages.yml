@@ -28,8 +28,9 @@ jobs:
       - name: Prepare deployment (exclude originals)
         run: |
           mkdir -p _deploy
-          cp -r site/* _deploy/
-          rm -f _deploy/images
+          # Copy all site files except images symlink
+          rsync -av --exclude='images' site/ _deploy/
+          # Create images directory and copy processed images
           mkdir -p _deploy/images
           # Copy only the processed images, not originals
           for dir in images/*/; do
