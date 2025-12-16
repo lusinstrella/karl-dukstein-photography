@@ -8,7 +8,7 @@ import json
 import os
 import sys
 
-PORT = 8002
+PORT = 8003
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'site'))
 
 class ServerThread(threading.Thread):

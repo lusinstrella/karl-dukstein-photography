@@ -35,7 +35,6 @@ TEMPLATE = """<!doctype html>
       <nav class="main-nav">
         <button class="menu-toggle" aria-label="Open menu">☰</button>
         <ul class="nav-list">
-          <li><a href="/">Home</a></li>
           <li><a href="/about.html">About</a></li>
           <li><a href="/contact.html">Contact</a></li>
         </ul>
@@ -45,12 +44,9 @@ TEMPLATE = """<!doctype html>
 
   <aside class="site-sidebar">
     <div class="sidebar-inner">
-      <div class="brand">KARL DUKSTEIN</div>
+      <div class="brand"><a href="/">KARL DUKSTEIN</a></div>
       <nav class="main-nav">
         <ul class="nav-list">
-          <li><a href="/">Home</a></li>
-{nav_links}
-          <li><a href="/contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -135,6 +131,9 @@ def main():
         label = dict(NAV_LINKS).get(key, key.replace('-', ' ').title())
         hero_html = pick_hero(data.get(key, []))
         out = TEMPLATE.format(title=html.escape(label), hero_html=hero_html or '', key=html.escape(key), nav_links=nav_links)
+        # ensure nav_links are inserted into the aside nav (formatting could leave an empty list if spacing differs)
+        if 'class="nav-list">\n        </ul>' in out and nav_links:
+            out = out.replace('class="nav-list">\n        </ul>', f'class="nav-list">\n{nav_links}\n        </ul>')
         path = ROOT / f"{key}.html"
         with open(path, 'w', encoding='utf-8') as fh:
             fh.write(out)
