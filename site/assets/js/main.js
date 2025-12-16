@@ -1,6 +1,6 @@
-// Main site JS: loads manifest, renders grids, lazy loads images, scroll animations
+// Main site JS: loads manifest, renders grids, lazy loads images with new hover animation
 document.addEventListener('DOMContentLoaded', async () => {
-  // Load manifest but don't let a network/file error abort the whole script.
+  // Load manifest
   let data = {};
   try{
     const resp = await fetch('data/sections.json');
@@ -10,37 +10,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.warn('Could not load data/sections.json — section grids will be empty', e);
   }
 
-  // Update hero if available
-  try{
-    const heroSection = data['dnc'] || [];
-    if (heroSection.length > 0){
-      // prefer explicitly marked hero
-      const hero = heroSection.find(it => it.hero) || heroSection[0];
-      const heroPic = document.querySelector('.hero picture');
-      if (heroPic && hero){
-        const src = heroPic.querySelector('source');
-        const img = heroPic.querySelector('img');
-        // pick largest available from srcset (full resolution fallback)
-        if (src && hero.srcset_webp){
-          // use the largest src (last when sorted by width)
-          src.setAttribute('srcset', hero.srcset_webp.split(', ').pop().split(' ')[0]);
-        }
-        if (img){
-          if (hero.full_jpg) img.setAttribute('src', hero.full_jpg);
-          else if (hero.full_webp) img.setAttribute('src', hero.full_webp);
-          img.alt = hero.alt || '';
-        }
-      }
-    }
-  }catch(e){console.warn('hero update failed', e)}
-  // IntersectionObserver for fades
-  const io = new IntersectionObserver(entries => {
+  // IntersectionObserver for lazy loading images with fade-in
+  const imgObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('visible');
+        const img = e.target;
+        if (img.dataset.src) {
+          img.src = img.dataset.src;
+          img.addEventListener('load', () => {
+            img.classList.add('loaded');
+          });
+          imgObserver.unobserve(img);
+        } else {
+          img.classList.add('loaded');
+        }
       }
     });
-  }, {threshold:0.08});
+  }, {threshold:0.1});
 
   // Render index covers if present
   const coversGrid = document.getElementById('covers-grid');
@@ -48,94 +34,87 @@ document.addEventListener('DOMContentLoaded', async () => {
     Object.keys(data).forEach(key => {
       const items = data[key] || [];
       const label = key.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-      if (items.length === 0) return; // leave empty if no images
+      if (items.length === 0) return;
       const cover = items.find(it => it.hero) || items[0];
       const a = document.createElement('a');
       a.className = 'section-cover';
       a.href = `${key}.html`;
       a.setAttribute('aria-label', label);
-      a.innerHTML = `
-        <picture>
-          ${cover.srcset_webp ? `<source type="image/webp" srcset="${cover.srcset_webp.split(', ')[0]}">` : ''}
-          <img src="${cover.thumb_jpg || cover.thumb_webp || cover.full_jpg || cover.full_webp}" alt="${cover.alt || label}">
-        </picture>
-        <div class="cover-label">${label}</div>`;
+
+      const picture = document.createElement('picture');
+      if (cover.srcset_webp) {
+        const source = document.createElement('source');
+        source.type = 'image/webp';
+        source.srcset = cover.srcset_webp.split(', ')[0];
+        picture.appendChild(source);
+      }
+
+      const img = document.createElement('img');
+      img.src = cover.thumb_jpg || cover.thumb_webp || cover.full_jpg || cover.full_webp;
+      img.alt = cover.alt || label;
+      picture.appendChild(img);
+
+      const labelDiv = document.createElement('div');
+      labelDiv.className = 'cover-label';
+      labelDiv.textContent = label;
+
+      a.appendChild(picture);
+      a.appendChild(labelDiv);
       coversGrid.appendChild(a);
+
+      // Observe image for loading animation
+      imgObserver.observe(img);
     });
   }
 
-  // Pagination-enabled section render
-  const ITEMS_PER_PAGE = 24;
-  function renderSection(key, page=1){
+  // Render section grids (full-page grid style)
+  function renderSection(key){
     const grid = document.querySelector(`.grid[data-section="${key}"]`);
     if (!grid) return;
     const imgs = data[key] || [];
-    const total = imgs.length;
-    const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
-    page = Math.max(1, Math.min(page, totalPages));
+
     grid.innerHTML = '';
 
-    if (total === 0){
-      // helpful visible hint when there are no images to render (or manifest couldn't be loaded)
+    if (imgs.length === 0){
       grid.innerHTML = '<p class="empty">No images found for this section. If you opened this file directly, try serving the <code>site/</code> folder over HTTP (for example: <code>python -m http.server</code>) so the manifest can be fetched.</p>';
-      const pager = grid.parentElement.querySelector('.pagination');
-      if (pager) pager.innerHTML = '';
       return;
     }
 
-    const start = (page-1)*ITEMS_PER_PAGE;
-    const pageItems = imgs.slice(start, start + ITEMS_PER_PAGE);
-
-    pageItems.forEach((it, idx) => {
+    imgs.forEach((it, idx) => {
       const div = document.createElement('div');
-      div.className = 'item fade-in';
-      const sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
-      div.innerHTML = `
-        <picture>
-          ${it.srcset_webp ? `<source type="image/webp" srcset="${it.srcset_webp}" sizes="${sizes}">` : ''}
-          <img data-full-webp="${it.full_webp}" data-full-jpg="${it.full_jpg}" data-id="${key}-${start+idx}" data-base="${it.id}" data-section="${key}" srcset="${it.srcset_jpg}" sizes="${sizes}" src="${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
-        </picture>`;
+      div.className = 'item';
+
+      const picture = document.createElement('picture');
+      if (it.srcset_webp) {
+        const source = document.createElement('source');
+        source.type = 'image/webp';
+        source.srcset = it.srcset_webp;
+        source.sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
+        picture.appendChild(source);
+      }
+
+      const img = document.createElement('img');
+      img.dataset.fullWebp = it.full_webp;
+      img.dataset.fullJpg = it.full_jpg;
+      img.dataset.id = `${key}-${idx}`;
+      img.dataset.base = it.id;
+      img.dataset.section = key;
+      img.srcset = it.srcset_jpg;
+      img.sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
+      img.src = it.thumb_jpg;
+      img.alt = it.alt;
+      img.loading = 'lazy';
+
+      picture.appendChild(img);
+      div.appendChild(picture);
       grid.appendChild(div);
-    });
 
-    // render pagination controls (static in HTML so test can detect existence)
-    let pager = grid.parentElement.querySelector('.pagination');
-    if (!pager){
-      pager = document.createElement('nav');
-      pager.className = 'pagination';
-      pager.setAttribute('aria-label','Pagination');
-      grid.parentElement.appendChild(pager);
-    }
-    pager.innerHTML = '';
-    if (totalPages > 1){
-      const prev = document.createElement('button');
-      prev.className = 'page-prev';
-      prev.textContent = 'Prev';
-      prev.disabled = page === 1;
-      prev.addEventListener('click', ()=> renderSection(key, page-1));
-      pager.appendChild(prev);
+      // Observe for loading animation
+      imgObserver.observe(img);
 
-      const info = document.createElement('span');
-      info.className = 'page-info';
-      info.textContent = `Page ${page} / ${totalPages}`;
-      pager.appendChild(info);
-
-      const next = document.createElement('button');
-      next.className = 'page-next';
-      next.textContent = 'Next';
-      next.disabled = page === totalPages;
-      next.addEventListener('click', ()=> renderSection(key, page+1));
-      pager.appendChild(next);
-    }
-
-    // attach lightbox handlers for newly added images
-    grid.querySelectorAll('img').forEach(img => img.addEventListener('click', openLightbox));
-
-    // Add onerror fallback to try jpg variants when an image fails to decode (some browsers have flaky webp support)
-    grid.querySelectorAll('img').forEach(img => {
+      // Error fallback
       img.addEventListener('error', function(){
         console.warn('Image load failed, attempting JPG fallback for', this.src);
-        // prefer explicit data-full-jpg or data-full-jpg attribute, otherwise rewrite .webp -> .jpg
         const tryList = [];
         if (this.dataset && this.dataset.fullJpg) tryList.push(this.dataset.fullJpg);
         const src = this.getAttribute('src') || '';
@@ -153,37 +132,44 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
 
-    // rewire intersection observer for fade in
-    grid.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+    // Attach lightbox handlers
+    grid.querySelectorAll('img').forEach(img => {
+      img.addEventListener('click', openLightbox);
+    });
   }
 
-  // initialize all section grids
+  // Initialize all section grids
   document.querySelectorAll('.grid').forEach(grid => {
     const section = grid.dataset.section;
-    renderSection(section, 1);
+    renderSection(section);
   });
 
-  // Lazy load & fade-in
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
+  // Mobile menu
+  const menuToggle = document.querySelector('.menu-toggle');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', () => {
+      document.body.classList.toggle('menu-open');
+    });
+  }
+
+  // Mobile dropdown toggle
+  const portfolioDropdown = document.querySelector('.portfolio-dropdown > a');
+  if (portfolioDropdown) {
+    portfolioDropdown.addEventListener('click', (e) => {
+      if (window.innerWidth <= 900) {
+        e.preventDefault();
+        document.querySelector('.portfolio-dropdown').classList.toggle('open');
       }
     });
-  }, {threshold:0.08});
+  }
 
-  document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-  // Lightbox wiring (delegated is already in place; remove redundant static attachment)
-  // document.querySelectorAll('.grid img').forEach(img => img.addEventListener('click', openLightbox));
-
-  // Mobile menu
-  document.querySelector('.menu-toggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));
-
-  // Delegated click handler so dynamically inserted images open the lightbox reliably
-  document.addEventListener('click', (ev) => {
-    const img = ev.target.closest && ev.target.closest('.grid img');
-    if (img) openLightbox({ currentTarget: img });
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (document.body.classList.contains('menu-open')) {
+      if (!e.target.closest('.main-nav') && !e.target.closest('.menu-toggle')) {
+        document.body.classList.remove('menu-open');
+      }
+    }
   });
 });
 
@@ -191,8 +177,7 @@ function openLightbox(e){
   const img = e.currentTarget;
   const lb = document.getElementById('lightbox');
   const lbImage = lb.querySelector('.lb-image');
-  // choose best available full image (prefer webp full, then jpg full, then fallbacks)
-  const src = img.dataset.fullWebp || img.dataset.fullWebp /* intentional duplicate safe-check */ || img.dataset.fullJpg || img.dataset.full || img.src;
+  const src = img.dataset.fullWebp || img.dataset.fullJpg || img.src;
   lbImage.src = src;
   lbImage.alt = img.alt || '';
   lb.setAttribute('aria-hidden','false');
@@ -206,9 +191,9 @@ function openLightbox(e){
   document.body.classList.add('no-scroll');
   window.currentImage = img;
 
-  // update counter if available
+  // Update counter
   const imgs = Array.from(document.querySelectorAll('.grid img'));
   const idx = imgs.indexOf(img);
   const counter = document.querySelector('#lightbox .lb-counter');
-  if (counter) counter.textContent = `${idx+1}/${imgs.length}`;
+  if (counter) counter.textContent = `${idx+1} / ${imgs.length}`;
 }

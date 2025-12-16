@@ -3,40 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact &mdash; Karl Dukstein</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&amp;display=swap" rel="stylesheet">
+  <title>Contact — Karl Dukstein</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container header-inner">
+    <div class="header-inner">
       <div class="brand"><a href="index.html">KARL DUKSTEIN</a></div>
       <nav class="main-nav">
+        <button class="menu-toggle" aria-label="Open menu">&#9776;</button>
         <ul class="nav-list">
-          <li><a href="about.html">About</a></li>
+          <li class="portfolio-dropdown">
+            <a href="#">portfolio</a>
+            <div class="dropdown-content">
+              <a href="frack-county.html">Frack County</a>
+              <a href="dnc.html">DNC</a>
+              <a href="weld-county.html">Weld</a>
+              <a href="patriotism.html">Patriotism</a>
+              <a href="portraits.html">Portraits</a>
+              <a href="misc.html">Misc</a>
+              <a href="student-work.html">Student Work</a>
+            </div>
+          </li>
+          <li><a href="about.html">about</a></li>
+          <li><a href="contact.html">contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="section" id="contact">
+  <main>
+    <div class="page-content">
       <h2>Contact</h2>
       <p>For bookings, licensing, or press, email <a href="mailto:hello@example.com">hello@example.com</a> or use the form below.</p>
       <form action="mailto:hello@example.com" method="post" enctype="text/plain">
-        <label>Name<br><input type="text" name="name"></label><br><br>
-        <label>Email<br><input type="email" name="email"></label><br><br>
-        <label>Message<br><textarea name="message" rows="6"></textarea></label><br><br>
+        <label>Name<br><input type="text" name="name"></label>
+        <label>Email<br><input type="email" name="email"></label>
+        <label>Message<br><textarea name="message" rows="6"></textarea></label>
         <button type="submit">Send</button>
       </form>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container">&copy; KARL DUKSTEIN</div>
+    <div class="container footer-content">
+      <div>&copy; KARL DUKSTEIN &bull; <a href="contact.html">Contact</a></div>
+      <div class="social">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a> &bull;
+        <a href="https://twitter.com" target="_blank" rel="noopener">Twitter</a> &bull;
+        <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
   </footer>
 
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
