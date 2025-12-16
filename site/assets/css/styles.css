@@ -196,21 +196,20 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 /* Remove old sidebar styles */
 .site-sidebar{display:none}
 
-/* Carousel Styles - With Anup Shah margins */
+/* Carousel Styles - Match grid width */
 .carousel{
   position:relative;
-  width:calc(100% - 120px);
+  width:100%;
   height:calc(100vh - 120px);
   min-height:640px;
   overflow:hidden;
-  margin:60px 60px 60px 60px;
+  margin:60px 0;
 }
 
 @media (max-width:900px){
   .carousel{
-    width:calc(100% - 40px);
     height:calc(70vh - 40px);
-    margin:20px;
+    margin:20px 0;
   }
 }
 
@@ -341,15 +340,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:var(--gap);
-  margin:30px 60px 0 60px;
-  max-width:calc(100vw - 120px);
-}
-
-@media (max-width:900px){
-  .covers-grid{
-    margin:30px 20px 0 20px;
-    max-width:calc(100vw - 40px);
-  }
+  margin-top:30px;
 }
 
 .section-cover{
@@ -404,15 +395,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 
 /* Match carousel width for section grids */
 .section .grid{
-  max-width:calc(100vw - 120px);
-  margin:0 60px;
-}
-
-@media (max-width:900px){
-  .section .grid{
-    max-width:calc(100vw - 40px);
-    margin:0 20px;
-  }
+  margin:0;
 }
 
 /* Lightbox */

@@ -171,6 +171,23 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
+
+  // Set active navigation link based on current page
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  const navLinks = document.querySelectorAll('.main-nav a');
+  navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+    }
+    // Also handle about and contact pages
+    if (currentPage === 'about.html' && linkPage === 'about.html') {
+      link.classList.add('active');
+    }
+    if (currentPage === 'contact.html' && linkPage === 'contact.html') {
+      link.classList.add('active');
+    }
+  });
 });
 
 function openLightbox(e){
