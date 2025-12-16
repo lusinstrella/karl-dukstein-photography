@@ -426,6 +426,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   z-index:201;
 }
 .lb-close:hover,.lb-prev:hover,.lb-next:hover{color:var(--yellow)}
+.lb-close:focus,.lb-prev:focus,.lb-next:focus{outline:none}
 .lb-close{top:20px;right:20px}
 .lb-prev{left:20px;top:50%;transform:translateY(-50%)}
 .lb-next{right:20px;top:50%;transform:translateY(-50%)}
