@@ -1,6 +1,6 @@
 // Main site JS: loads manifest, renders grids, lazy loads images, scroll animations
 document.addEventListener('DOMContentLoaded', async () => {
-  const resp = await fetch('/data/sections.json');
+  const resp = await fetch('data/sections.json');
   const data = await resp.json();
 
   // Update hero if available
@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // pick largest available from srcset (full resolution fallback)
         if (src && hero.srcset_webp){
           // use the largest src (last when sorted by width)
-          src.setAttribute('srcset', '/' + hero.srcset_webp.split(', ').pop().split(' ')[0]);
+          src.setAttribute('srcset', hero.srcset_webp.split(', ').pop().split(' ')[0]);
         }
         if (img){
-          if (hero.full_jpg) img.setAttribute('src', '/' + hero.full_jpg);
-          else if (hero.full_webp) img.setAttribute('src', '/' + hero.full_webp);
+          if (hero.full_jpg) img.setAttribute('src', hero.full_jpg);
+          else if (hero.full_webp) img.setAttribute('src', hero.full_webp);
           img.alt = hero.alt || '';
         }
       }
@@ -45,12 +45,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       const cover = items.find(it => it.hero) || items[0];
       const a = document.createElement('a');
       a.className = 'section-cover';
-      a.href = `/${key}.html`;
+      a.href = `${key}.html`;
       a.setAttribute('aria-label', label);
       a.innerHTML = `
         <picture>
-          ${cover.srcset_webp ? `<source type="image/webp" srcset="/${cover.srcset_webp.split(', ')[0]}">` : ''}
-          <img src="/${cover.thumb_jpg || cover.thumb_webp || cover.full_jpg || cover.full_webp}" alt="${cover.alt || label}">
+          ${cover.srcset_webp ? `<source type="image/webp" srcset="${cover.srcset_webp.split(', ')[0]}">` : ''}
+          <img src="${cover.thumb_jpg || cover.thumb_webp || cover.full_jpg || cover.full_webp}" alt="${cover.alt || label}">
         </picture>
         <div class="cover-label">${label}</div>`;
       coversGrid.appendChild(a);
@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       const sizes = it.sizes || '(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw';
       div.innerHTML = `
         <picture>
-          ${it.srcset_webp ? `<source type="image/webp" srcset="/${it.srcset_webp}" sizes="${sizes}">` : ''}
-          <img data-full-webp="/${it.full_webp}" data-full-jpg="/${it.full_jpg}" data-id="${key}-${start+idx}" data-base="${it.id}" data-section="${key}" srcset="/${it.srcset_jpg}" sizes="${sizes}" src="/${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
+          ${it.srcset_webp ? `<source type="image/webp" srcset="${it.srcset_webp}" sizes="${sizes}">` : ''}
+          <img data-full-webp="${it.full_webp}" data-full-jpg="${it.full_jpg}" data-id="${key}-${start+idx}" data-base="${it.id}" data-section="${key}" srcset="${it.srcset_jpg}" sizes="${sizes}" src="${it.thumb_jpg}" alt="${it.alt}" loading="lazy">
         </picture>`;
       grid.appendChild(div);
     });
@@ -136,8 +136,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
-  // Lightbox wiring
-  document.querySelectorAll('.grid img').forEach(img => img.addEventListener('click', openLightbox));
+  // Lightbox wiring (delegated is already in place; remove redundant static attachment)
+  // document.querySelectorAll('.grid img').forEach(img => img.addEventListener('click', openLightbox));
 
   // Mobile menu
   document.querySelector('.menu-toggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));

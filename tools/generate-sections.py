@@ -26,7 +26,7 @@ TEMPLATE = """<!doctype html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>{title} — Karl Dukstein</title>
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header class="site-header">
@@ -81,8 +81,8 @@ TEMPLATE = """<!doctype html>
     <button class="lb-next" aria-label="Next">▶</button>
   </div>
 
-  <script src="/assets/js/lightbox.js" defer></script>
-  <script src="/assets/js/main.js" defer></script>
+  <script src="assets/js/lightbox.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
 """
@@ -105,17 +105,17 @@ def pick_hero(items):
     # prefer webp source if present, wrap in picture with hero-img class and centerable object-position
     out = '<picture class="hero-pic">\n'
     if hero.get('full_webp'):
-        out += f'  <source srcset="/{html.escape(hero["full_webp"])}" type="image/webp">\n'
+        out += f'  <source srcset="{html.escape(hero["full_webp"])}" type="image/webp">\n'
     if hero.get('full_jpg'):
         op = ''
         if hero.get('object_position') and hero['object_position'].get('position'):
             op = f' style="object-position:{html.escape(hero["object_position"]["position"])}"'
-        out += f'  <img class="hero-img" src="/{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
+        out += f'  <img class="hero-img" src="{html.escape(hero["full_jpg"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
     elif hero.get('full_webp'):
         op = ''
         if hero.get('object_position') and hero['object_position'].get('position'):
             op = f' style="object-position:{html.escape(hero["object_position"]["position"])}"'
-        out += f'  <img class="hero-img" src="/{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
+        out += f'  <img class="hero-img" src="{html.escape(hero["full_webp"])}" alt="{html.escape(hero.get("alt",""))}" loading="lazy"{op}>'
     out += '\n</picture>'
     return out
 
@@ -131,9 +131,19 @@ def main():
         label = dict(NAV_LINKS).get(key, key.replace('-', ' ').title())
         hero_html = pick_hero(data.get(key, []))
         out = TEMPLATE.format(title=html.escape(label), hero_html=hero_html or '', key=html.escape(key), nav_links=nav_links)
-        # ensure nav_links are inserted into the aside nav (formatting could leave an empty list if spacing differs)
+        # Ensure nav_links are inserted into the aside nav (formatting could leave an empty list if spacing differs)
         if 'class="nav-list">\n        </ul>' in out and nav_links:
             out = out.replace('class="nav-list">\n        </ul>', f'class="nav-list">\n{nav_links}\n        </ul>')
+        # Convert absolute links in nav to relative to make pages work when opened from file:// or subpaths
+        out = out.replace('href="/frack-county.html"', 'href="frack-county.html"')
+        out = out.replace('href="/dnc.html"', 'href="dnc.html"')
+        out = out.replace('href="/weld-county.html"', 'href="weld-county.html"')
+        out = out.replace('href="/patriotism.html"', 'href="patriotism.html"')
+        out = out.replace('href="/portraits.html"', 'href="portraits.html"')
+        out = out.replace('href="/misc.html"', 'href="misc.html"')
+        out = out.replace('href="/student-work.html"', 'href="student-work.html"')
+        out = out.replace('href="/contact.html"', 'href="contact.html"')
+        out = out.replace('href="/about.html"', 'href="about.html"')
         path = ROOT / f"{key}.html"
         with open(path, 'w', encoding='utf-8') as fh:
             fh.write(out)
