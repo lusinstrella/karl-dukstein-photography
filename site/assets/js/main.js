@@ -1,5 +1,11 @@
 // Main site JS: loads manifest, renders grids, lazy loads images with new hover animation
 document.addEventListener('DOMContentLoaded', async () => {
+  // Show loading spinner
+  const spinner = document.createElement('div');
+  spinner.className = 'loading-spinner';
+  spinner.innerHTML = '<div class="spinner"></div>';
+  document.body.appendChild(spinner);
+
   // Load manifest
   let data = {};
   try{
@@ -8,9 +14,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     data = await resp.json();
   }catch(e){
     console.warn('Could not load data/sections.json — section grids will be empty', e);
+  } finally {
+    // Hide spinner after data loads
+    setTimeout(() => {
+      spinner.classList.add('hidden');
+      setTimeout(() => spinner.remove(), 300);
+    }, 300);
   }
 
-  // IntersectionObserver for lazy loading images with fade-in
+  // IntersectionObserver for lazy loading images with fade-in (optimized threshold)
   const imgObserver = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -26,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       }
     });
-  }, {threshold:0.1});
+  }, {threshold:0.01, rootMargin:'50px'});
 
   // Render index covers if present
   const coversGrid = document.getElementById('covers-grid');

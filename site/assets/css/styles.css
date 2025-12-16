@@ -181,6 +181,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
     inset:0;
     background:rgba(0,0,0,.8);
     z-index:98;
+    animation:fadeInBackdrop 0.3s ease forwards;
+  }
+
+  @keyframes fadeInBackdrop{
+    from{opacity:0}
+    to{opacity:1}
   }
   .dropdown-content{
     position:static;
@@ -203,7 +209,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   height:calc(66vh - 80px);
   min-height:500px;
   overflow:hidden;
-  margin:60px 0;
+  margin:60px 0 100px 0;
 }
 
 @media (max-width:900px){
@@ -266,6 +272,102 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   color:var(--accent);
   font-family:'Montserrat',sans-serif;
   font-size:14px;
+}
+
+/* Carousel indicators (subtle dots) */
+.carousel-indicators{
+  position:absolute;
+  bottom:15px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  z-index:10;
+}
+
+.carousel-indicator{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.3);
+  cursor:pointer;
+  transition:all 0.3s ease;
+}
+
+.carousel-indicator.active{
+  background:rgba(255,255,255,0.8);
+  width:24px;
+  border-radius:4px;
+}
+
+.carousel-indicator:hover{
+  background:rgba(255,255,255,0.6);
+}
+
+/* Pause indicator */
+.carousel-pause-indicator{
+  position:absolute;
+  top:20px;
+  right:20px;
+  width:32px;
+  height:32px;
+  background:rgba(0,0,0,0.5);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity 0.3s ease;
+  pointer-events:none;
+  z-index:10;
+}
+
+.carousel.paused .carousel-pause-indicator{
+  opacity:1;
+}
+
+.carousel-pause-indicator::before,
+.carousel-pause-indicator::after{
+  content:'';
+  width:3px;
+  height:12px;
+  background:white;
+  border-radius:1px;
+}
+
+.carousel-pause-indicator::before{
+  margin-right:3px;
+}
+
+.carousel-pause-indicator::after{
+  margin-left:3px;
+}
+
+/* Loading Spinner */
+.loading-spinner{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index:1000;
+  pointer-events:none;
+}
+
+.spinner{
+  width:50px;
+  height:50px;
+  border:4px solid rgba(255,255,255,0.1);
+  border-top-color:var(--yellow);
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.loading-spinner.hidden{
+  display:none;
 }
 
 /* Full-Page Grid (Monaris Style) */
@@ -354,23 +456,31 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   display:block;
   overflow:hidden;
   aspect-ratio:4/3;
-  transition:transform 0.3s ease;
+  box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  transition:box-shadow 0.3s ease,transform 0.3s ease;
 }
 
-.section-cover:hover{transform:scale(1.02)}
+.section-cover:hover{
+  box-shadow:0 8px 24px rgba(0,0,0,0.6);
+  transform:translateY(-4px);
+}
 
 .section-cover img{
   width:100%;
   height:100%;
   object-fit:cover;
   opacity:0;
-  transform:translate3d(0,10px,0);
-  transition:opacity 1s cubic-bezier(.33,0,.2,1),transform 1s cubic-bezier(.33,0,.2,1);
+  transform:translate3d(0,10px,0) scale(1);
+  transition:opacity 1s cubic-bezier(.33,0,.2,1),transform 0.6s cubic-bezier(.33,0,.2,1);
 }
 
 .section-cover img.loaded{
   opacity:1;
-  transform:translate3d(0,0,0);
+  transform:translate3d(0,0,0) scale(1);
+}
+
+.section-cover:hover img{
+  transform:translate3d(0,0,0) scale(1.05);
 }
 
 .section-cover .cover-label{
