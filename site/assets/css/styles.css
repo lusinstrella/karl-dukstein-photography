@@ -244,14 +244,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 }
 
 .carousel-controls{
-  position:absolute;
-  bottom:30px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:20px;
-  z-index:10;
-  align-items:center;
+  display:none;
 }
 
 .carousel-btn{
@@ -303,7 +296,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   transform:translateY(-4px);
 }
 
-/* New Hover Animation (emileemcgovern style) */
+/* New Hover Animation (emileemcgovern style) with fade-in on load */
 .grid .item img{
   width:100%;
   height:100%;
@@ -316,6 +309,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
 .grid .item img.loaded{
   opacity:1;
   transform:translate3d(0,0,0) scale(1);
+  animation:fadeInImage 0.8s cubic-bezier(.33,0,.2,1) forwards;
+}
+
+@keyframes fadeInImage{
+  from{opacity:0;transform:translate3d(0,10px,0) scale(1)}
+  to{opacity:1;transform:translate3d(0,0,0) scale(1)}
 }
 
 .grid .item:hover img{
@@ -385,7 +384,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--yellow);outline-off
   font-weight:700;
   letter-spacing:1px;
   text-transform:uppercase;
-  color:var(--yellow);
+  color:var(--accent);
 }
 
 @media (max-width:768px){.covers-grid{grid-template-columns:repeat(2,1fr)}}
